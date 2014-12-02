@@ -1,0 +1,426 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		15CC50FD1A2E648B00376A6C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15CC50FC1A2E648B00376A6C /* AppDelegate.swift */; };
+		15CC50FF1A2E648B00376A6C /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15CC50FE1A2E648B00376A6C /* MasterViewController.swift */; };
+		15CC51011A2E648B00376A6C /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15CC51001A2E648B00376A6C /* DetailViewController.swift */; };
+		15CC51041A2E648B00376A6C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15CC51021A2E648B00376A6C /* Main.storyboard */; };
+		15CC51061A2E648B00376A6C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 15CC51051A2E648B00376A6C /* Images.xcassets */; };
+		15CC51091A2E648B00376A6C /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15CC51071A2E648B00376A6C /* LaunchScreen.xib */; };
+		15CC51151A2E648C00376A6C /* HammeroTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15CC51141A2E648C00376A6C /* HammeroTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		15CC510F1A2E648C00376A6C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 15CC50EF1A2E648B00376A6C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 15CC50F61A2E648B00376A6C;
+			remoteInfo = Hammero;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		15CC50F71A2E648B00376A6C /* Hammero.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hammero.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		15CC50FB1A2E648B00376A6C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		15CC50FC1A2E648B00376A6C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		15CC50FE1A2E648B00376A6C /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
+		15CC51001A2E648B00376A6C /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		15CC51031A2E648B00376A6C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		15CC51051A2E648B00376A6C /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		15CC51081A2E648B00376A6C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		15CC510E1A2E648C00376A6C /* HammeroTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HammeroTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		15CC51131A2E648C00376A6C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		15CC51141A2E648C00376A6C /* HammeroTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HammeroTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		15CC50F41A2E648B00376A6C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		15CC510B1A2E648C00376A6C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		15CC50EE1A2E648B00376A6C = {
+			isa = PBXGroup;
+			children = (
+				15CC50F91A2E648B00376A6C /* Hammero */,
+				15CC51111A2E648C00376A6C /* HammeroTests */,
+				15CC50F81A2E648B00376A6C /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		15CC50F81A2E648B00376A6C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				15CC50F71A2E648B00376A6C /* Hammero.app */,
+				15CC510E1A2E648C00376A6C /* HammeroTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		15CC50F91A2E648B00376A6C /* Hammero */ = {
+			isa = PBXGroup;
+			children = (
+				15CC50FC1A2E648B00376A6C /* AppDelegate.swift */,
+				15CC50FE1A2E648B00376A6C /* MasterViewController.swift */,
+				15CC51001A2E648B00376A6C /* DetailViewController.swift */,
+				15CC51021A2E648B00376A6C /* Main.storyboard */,
+				15CC51051A2E648B00376A6C /* Images.xcassets */,
+				15CC51071A2E648B00376A6C /* LaunchScreen.xib */,
+				15CC50FA1A2E648B00376A6C /* Supporting Files */,
+			);
+			path = Hammero;
+			sourceTree = "<group>";
+		};
+		15CC50FA1A2E648B00376A6C /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				15CC50FB1A2E648B00376A6C /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		15CC51111A2E648C00376A6C /* HammeroTests */ = {
+			isa = PBXGroup;
+			children = (
+				15CC51141A2E648C00376A6C /* HammeroTests.swift */,
+				15CC51121A2E648C00376A6C /* Supporting Files */,
+			);
+			path = HammeroTests;
+			sourceTree = "<group>";
+		};
+		15CC51121A2E648C00376A6C /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				15CC51131A2E648C00376A6C /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		15CC50F61A2E648B00376A6C /* Hammero */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 15CC51181A2E648C00376A6C /* Build configuration list for PBXNativeTarget "Hammero" */;
+			buildPhases = (
+				15CC50F31A2E648B00376A6C /* Sources */,
+				15CC50F41A2E648B00376A6C /* Frameworks */,
+				15CC50F51A2E648B00376A6C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Hammero;
+			productName = Hammero;
+			productReference = 15CC50F71A2E648B00376A6C /* Hammero.app */;
+			productType = "com.apple.product-type.application";
+		};
+		15CC510D1A2E648C00376A6C /* HammeroTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 15CC511B1A2E648C00376A6C /* Build configuration list for PBXNativeTarget "HammeroTests" */;
+			buildPhases = (
+				15CC510A1A2E648C00376A6C /* Sources */,
+				15CC510B1A2E648C00376A6C /* Frameworks */,
+				15CC510C1A2E648C00376A6C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				15CC51101A2E648C00376A6C /* PBXTargetDependency */,
+			);
+			name = HammeroTests;
+			productName = HammeroTests;
+			productReference = 15CC510E1A2E648C00376A6C /* HammeroTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		15CC50EF1A2E648B00376A6C /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0610;
+				ORGANIZATIONNAME = "fasil fikreab";
+				TargetAttributes = {
+					15CC50F61A2E648B00376A6C = {
+						CreatedOnToolsVersion = 6.1;
+					};
+					15CC510D1A2E648C00376A6C = {
+						CreatedOnToolsVersion = 6.1;
+						TestTargetID = 15CC50F61A2E648B00376A6C;
+					};
+				};
+			};
+			buildConfigurationList = 15CC50F21A2E648B00376A6C /* Build configuration list for PBXProject "Hammero" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 15CC50EE1A2E648B00376A6C;
+			productRefGroup = 15CC50F81A2E648B00376A6C /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				15CC50F61A2E648B00376A6C /* Hammero */,
+				15CC510D1A2E648C00376A6C /* HammeroTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		15CC50F51A2E648B00376A6C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				15CC51041A2E648B00376A6C /* Main.storyboard in Resources */,
+				15CC51091A2E648B00376A6C /* LaunchScreen.xib in Resources */,
+				15CC51061A2E648B00376A6C /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		15CC510C1A2E648C00376A6C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		15CC50F31A2E648B00376A6C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				15CC51011A2E648B00376A6C /* DetailViewController.swift in Sources */,
+				15CC50FF1A2E648B00376A6C /* MasterViewController.swift in Sources */,
+				15CC50FD1A2E648B00376A6C /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		15CC510A1A2E648C00376A6C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				15CC51151A2E648C00376A6C /* HammeroTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		15CC51101A2E648C00376A6C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 15CC50F61A2E648B00376A6C /* Hammero */;
+			targetProxy = 15CC510F1A2E648C00376A6C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		15CC51021A2E648B00376A6C /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				15CC51031A2E648B00376A6C /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		15CC51071A2E648B00376A6C /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				15CC51081A2E648B00376A6C /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		15CC51161A2E648C00376A6C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		15CC51171A2E648C00376A6C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		15CC51191A2E648C00376A6C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Hammero/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		15CC511A1A2E648C00376A6C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Hammero/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		15CC511C1A2E648C00376A6C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = HammeroTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Hammero.app/Hammero";
+			};
+			name = Debug;
+		};
+		15CC511D1A2E648C00376A6C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = HammeroTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Hammero.app/Hammero";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		15CC50F21A2E648B00376A6C /* Build configuration list for PBXProject "Hammero" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				15CC51161A2E648C00376A6C /* Debug */,
+				15CC51171A2E648C00376A6C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		15CC51181A2E648C00376A6C /* Build configuration list for PBXNativeTarget "Hammero" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				15CC51191A2E648C00376A6C /* Debug */,
+				15CC511A1A2E648C00376A6C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		15CC511B1A2E648C00376A6C /* Build configuration list for PBXNativeTarget "HammeroTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				15CC511C1A2E648C00376A6C /* Debug */,
+				15CC511D1A2E648C00376A6C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 15CC50EF1A2E648B00376A6C /* Project object */;
+}
