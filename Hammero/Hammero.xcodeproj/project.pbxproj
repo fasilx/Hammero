@@ -1,0 +1,513 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		15A8DCDD1A34245600634C66 /* icon-40@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 15A8DCDC1A34245600634C66 /* icon-40@2x.png */; };
+		15A8DCDF1A3526EF00634C66 /* GroupChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A8DCDE1A3526EE00634C66 /* GroupChatViewController.swift */; };
+		15A8DCE71A3639B600634C66 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A8DCE61A3639B600634C66 /* AuthViewController.swift */; };
+		15A8DCEB1A36FD0600634C66 /* group-25.png in Resources */ = {isa = PBXBuildFile; fileRef = 15A8DCEA1A36FD0600634C66 /* group-25.png */; };
+		15A8DCEE1A370F1200634C66 /* conference-25.png in Resources */ = {isa = PBXBuildFile; fileRef = 15A8DCED1A370F1200634C66 /* conference-25.png */; };
+		15A8DCF01A370FD000634C66 /* find_user-25.png in Resources */ = {isa = PBXBuildFile; fileRef = 15A8DCEF1A370FD000634C66 /* find_user-25.png */; };
+		15AE12051A31568E00C30B11 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15AE12041A31568E00C30B11 /* AppDelegate.swift */; };
+		15AE12071A31568E00C30B11 /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15AE12061A31568E00C30B11 /* MasterViewController.swift */; };
+		15AE12091A31568E00C30B11 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15AE12081A31568E00C30B11 /* DetailViewController.swift */; };
+		15AE120C1A31568E00C30B11 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15AE120A1A31568E00C30B11 /* Main.storyboard */; };
+		15AE120E1A31568E00C30B11 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 15AE120D1A31568E00C30B11 /* Images.xcassets */; };
+		15AE12111A31568E00C30B11 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15AE120F1A31568E00C30B11 /* LaunchScreen.xib */; };
+		15AE121D1A31568E00C30B11 /* HammeroTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15AE121C1A31568E00C30B11 /* HammeroTests.swift */; };
+		15AE12331A3174F900C30B11 /* Firebase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15AE12321A3174F900C30B11 /* Firebase.framework */; };
+		15AE12351A31752400C30B11 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 15AE12341A31752400C30B11 /* libicucore.dylib */; };
+		15AE12371A31753D00C30B11 /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 15AE12361A31753D00C30B11 /* libc++.dylib */; };
+		15AE12391A31758300C30B11 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15AE12381A31758300C30B11 /* CFNetwork.framework */; };
+		15AE123B1A3175A600C30B11 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15AE123A1A3175A600C30B11 /* Security.framework */; };
+		15AE123D1A3175F200C30B11 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15AE123C1A3175F200C30B11 /* SystemConfiguration.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		15AE12171A31568E00C30B11 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 15AE11F71A31568E00C30B11 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 15AE11FE1A31568E00C30B11;
+			remoteInfo = Hammero;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		15A8DCDC1A34245600634C66 /* icon-40@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-40@2x.png"; sourceTree = "<group>"; };
+		15A8DCDE1A3526EE00634C66 /* GroupChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupChatViewController.swift; sourceTree = "<group>"; };
+		15A8DCE61A3639B600634C66 /* AuthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AuthViewController.swift; path = ../AuthViewController.swift; sourceTree = "<group>"; };
+		15A8DCEA1A36FD0600634C66 /* group-25.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "group-25.png"; path = "Hammero/group-25.png"; sourceTree = "<group>"; };
+		15A8DCED1A370F1200634C66 /* conference-25.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "conference-25.png"; sourceTree = "<group>"; };
+		15A8DCEF1A370FD000634C66 /* find_user-25.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "find_user-25.png"; sourceTree = "<group>"; };
+		15AE11FF1A31568E00C30B11 /* Hammero.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hammero.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		15AE12031A31568E00C30B11 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		15AE12041A31568E00C30B11 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		15AE12061A31568E00C30B11 /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
+		15AE12081A31568E00C30B11 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		15AE120B1A31568E00C30B11 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		15AE120D1A31568E00C30B11 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		15AE12101A31568E00C30B11 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		15AE12161A31568E00C30B11 /* HammeroTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HammeroTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		15AE121B1A31568E00C30B11 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		15AE121C1A31568E00C30B11 /* HammeroTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HammeroTests.swift; sourceTree = "<group>"; };
+		15AE12321A3174F900C30B11 /* Firebase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Firebase.framework; path = ../../../../Downloads/Firebase.framework; sourceTree = "<group>"; };
+		15AE12341A31752400C30B11 /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
+		15AE12361A31753D00C30B11 /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
+		15AE12381A31758300C30B11 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		15AE123A1A3175A600C30B11 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		15AE123C1A3175F200C30B11 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		15AE123E1A31775100C30B11 /* Hammero-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Hammero-Bridging-Header.h"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		15AE11FC1A31568E00C30B11 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				15AE123D1A3175F200C30B11 /* SystemConfiguration.framework in Frameworks */,
+				15AE123B1A3175A600C30B11 /* Security.framework in Frameworks */,
+				15AE12391A31758300C30B11 /* CFNetwork.framework in Frameworks */,
+				15AE12371A31753D00C30B11 /* libc++.dylib in Frameworks */,
+				15AE12351A31752400C30B11 /* libicucore.dylib in Frameworks */,
+				15AE12331A3174F900C30B11 /* Firebase.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		15AE12131A31568E00C30B11 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		15A8DCEC1A36FD1F00634C66 /* icons */ = {
+			isa = PBXGroup;
+			children = (
+				15A8DCEF1A370FD000634C66 /* find_user-25.png */,
+				15A8DCEA1A36FD0600634C66 /* group-25.png */,
+				15A8DCED1A370F1200634C66 /* conference-25.png */,
+			);
+			name = icons;
+			sourceTree = "<group>";
+		};
+		15AE11F61A31568E00C30B11 = {
+			isa = PBXGroup;
+			children = (
+				15A8DCEC1A36FD1F00634C66 /* icons */,
+				15AE12011A31568E00C30B11 /* Hammero */,
+				15AE12191A31568E00C30B11 /* HammeroTests */,
+				15AE12001A31568E00C30B11 /* Products */,
+				15AE12411A3243CF00C30B11 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		15AE12001A31568E00C30B11 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				15AE11FF1A31568E00C30B11 /* Hammero.app */,
+				15AE12161A31568E00C30B11 /* HammeroTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		15AE12011A31568E00C30B11 /* Hammero */ = {
+			isa = PBXGroup;
+			children = (
+				15A8DCE61A3639B600634C66 /* AuthViewController.swift */,
+				15A8DCDE1A3526EE00634C66 /* GroupChatViewController.swift */,
+				15AE12041A31568E00C30B11 /* AppDelegate.swift */,
+				15AE12061A31568E00C30B11 /* MasterViewController.swift */,
+				15A8DCDC1A34245600634C66 /* icon-40@2x.png */,
+				15AE12081A31568E00C30B11 /* DetailViewController.swift */,
+				15AE120A1A31568E00C30B11 /* Main.storyboard */,
+				15AE120D1A31568E00C30B11 /* Images.xcassets */,
+				15AE120F1A31568E00C30B11 /* LaunchScreen.xib */,
+				15AE12021A31568E00C30B11 /* Supporting Files */,
+				15AE123E1A31775100C30B11 /* Hammero-Bridging-Header.h */,
+			);
+			path = Hammero;
+			sourceTree = "<group>";
+		};
+		15AE12021A31568E00C30B11 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				15AE12031A31568E00C30B11 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		15AE12191A31568E00C30B11 /* HammeroTests */ = {
+			isa = PBXGroup;
+			children = (
+				15AE121C1A31568E00C30B11 /* HammeroTests.swift */,
+				15AE121A1A31568E00C30B11 /* Supporting Files */,
+			);
+			path = HammeroTests;
+			sourceTree = "<group>";
+		};
+		15AE121A1A31568E00C30B11 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				15AE121B1A31568E00C30B11 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		15AE12411A3243CF00C30B11 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				15AE12321A3174F900C30B11 /* Firebase.framework */,
+				15AE12341A31752400C30B11 /* libicucore.dylib */,
+				15AE12361A31753D00C30B11 /* libc++.dylib */,
+				15AE12381A31758300C30B11 /* CFNetwork.framework */,
+				15AE123A1A3175A600C30B11 /* Security.framework */,
+				15AE123C1A3175F200C30B11 /* SystemConfiguration.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		15AE11FE1A31568E00C30B11 /* Hammero */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 15AE12201A31568E00C30B11 /* Build configuration list for PBXNativeTarget "Hammero" */;
+			buildPhases = (
+				15AE11FB1A31568E00C30B11 /* Sources */,
+				15AE11FC1A31568E00C30B11 /* Frameworks */,
+				15AE11FD1A31568E00C30B11 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Hammero;
+			productName = Hammero;
+			productReference = 15AE11FF1A31568E00C30B11 /* Hammero.app */;
+			productType = "com.apple.product-type.application";
+		};
+		15AE12151A31568E00C30B11 /* HammeroTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 15AE12231A31568E00C30B11 /* Build configuration list for PBXNativeTarget "HammeroTests" */;
+			buildPhases = (
+				15AE12121A31568E00C30B11 /* Sources */,
+				15AE12131A31568E00C30B11 /* Frameworks */,
+				15AE12141A31568E00C30B11 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				15AE12181A31568E00C30B11 /* PBXTargetDependency */,
+			);
+			name = HammeroTests;
+			productName = HammeroTests;
+			productReference = 15AE12161A31568E00C30B11 /* HammeroTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		15AE11F71A31568E00C30B11 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0610;
+				ORGANIZATIONNAME = "fasil fikreab";
+				TargetAttributes = {
+					15AE11FE1A31568E00C30B11 = {
+						CreatedOnToolsVersion = 6.1.1;
+					};
+					15AE12151A31568E00C30B11 = {
+						CreatedOnToolsVersion = 6.1.1;
+						TestTargetID = 15AE11FE1A31568E00C30B11;
+					};
+				};
+			};
+			buildConfigurationList = 15AE11FA1A31568E00C30B11 /* Build configuration list for PBXProject "Hammero" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 15AE11F61A31568E00C30B11;
+			productRefGroup = 15AE12001A31568E00C30B11 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				15AE11FE1A31568E00C30B11 /* Hammero */,
+				15AE12151A31568E00C30B11 /* HammeroTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		15AE11FD1A31568E00C30B11 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				15A8DCF01A370FD000634C66 /* find_user-25.png in Resources */,
+				15A8DCEE1A370F1200634C66 /* conference-25.png in Resources */,
+				15AE120C1A31568E00C30B11 /* Main.storyboard in Resources */,
+				15A8DCDD1A34245600634C66 /* icon-40@2x.png in Resources */,
+				15AE12111A31568E00C30B11 /* LaunchScreen.xib in Resources */,
+				15A8DCEB1A36FD0600634C66 /* group-25.png in Resources */,
+				15AE120E1A31568E00C30B11 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		15AE12141A31568E00C30B11 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		15AE11FB1A31568E00C30B11 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				15A8DCDF1A3526EF00634C66 /* GroupChatViewController.swift in Sources */,
+				15AE12091A31568E00C30B11 /* DetailViewController.swift in Sources */,
+				15A8DCE71A3639B600634C66 /* AuthViewController.swift in Sources */,
+				15AE12071A31568E00C30B11 /* MasterViewController.swift in Sources */,
+				15AE12051A31568E00C30B11 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		15AE12121A31568E00C30B11 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				15AE121D1A31568E00C30B11 /* HammeroTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		15AE12181A31568E00C30B11 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 15AE11FE1A31568E00C30B11 /* Hammero */;
+			targetProxy = 15AE12171A31568E00C30B11 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		15AE120A1A31568E00C30B11 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				15AE120B1A31568E00C30B11 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		15AE120F1A31568E00C30B11 /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				15AE12101A31568E00C30B11 /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		15AE121E1A31568E00C30B11 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		15AE121F1A31568E00C30B11 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		15AE12211A31568E00C30B11 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/fafi/Downloads,
+				);
+				INFOPLIST_FILE = Hammero/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Hammero/Hammero-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		15AE12221A31568E00C30B11 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/fafi/Downloads,
+				);
+				INFOPLIST_FILE = Hammero/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Hammero/Hammero-Bridging-Header.h";
+			};
+			name = Release;
+		};
+		15AE12241A31568E00C30B11 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = HammeroTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Hammero.app/Hammero";
+			};
+			name = Debug;
+		};
+		15AE12251A31568E00C30B11 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = HammeroTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Hammero.app/Hammero";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		15AE11FA1A31568E00C30B11 /* Build configuration list for PBXProject "Hammero" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				15AE121E1A31568E00C30B11 /* Debug */,
+				15AE121F1A31568E00C30B11 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		15AE12201A31568E00C30B11 /* Build configuration list for PBXNativeTarget "Hammero" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				15AE12211A31568E00C30B11 /* Debug */,
+				15AE12221A31568E00C30B11 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		15AE12231A31568E00C30B11 /* Build configuration list for PBXNativeTarget "HammeroTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				15AE12241A31568E00C30B11 /* Debug */,
+				15AE12251A31568E00C30B11 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 15AE11F71A31568E00C30B11 /* Project object */;
+}

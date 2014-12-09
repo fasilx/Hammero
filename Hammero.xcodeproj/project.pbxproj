@@ -411,6 +411,7 @@
 				15CC511A1A2E648C00376A6C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		15CC511B1A2E648C00376A6C /* Build configuration list for PBXNativeTarget "HammeroTests" */ = {
 			isa = XCConfigurationList;
@@ -419,6 +420,7 @@
 				15CC511D1A2E648C00376A6C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
