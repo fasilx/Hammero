@@ -15,6 +15,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        
+        
         // Override point for customization after application launch.
 //        let tabBarController = self.window!.rootViewController as UITabBarController
 //        let navigationController = splitViewController.viewControllers[splitViewController.viewControllers.count-1] as UINavigationController

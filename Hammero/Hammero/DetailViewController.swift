@@ -26,7 +26,7 @@ class DetailViewController: UITableViewController {
 
     func configureView() {
         // Update the user interface for the detail item.
-        
+       
         self.title = self.detailItem?.valueForKey("name") as? String
         
         if let detail: AnyObject = self.detailItem {

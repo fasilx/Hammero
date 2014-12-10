@@ -13,119 +13,105 @@ class MasterViewController: UITableViewController {
     var detailViewController: DetailViewController? = nil
     var authViewController: AuthViewController? = nil
     
-    var clubRef = Firebase(url:"https://peopler.firebaseio.com/clubs")
     var ref = Firebase(url: "https://peopler.firebaseio.com")
+    var clubsRef = Firebase(url:"https://peopler.firebaseio.com/clubs")
+    var usersRef = Firebase(url: "https://peopler.firebaseio.com/users")
    
-    var clubs  = NSArray()
-    var auth: AnyObject? = nil
+    var clubs  = NSMutableArray()
+    var user: FAuthData? = nil
     
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        
-//        if UIDevice.currentDevice().userInterfaceIdiom == .Pad {
-//            self.clearsSelectionOnViewWillAppear = false
-//            self.preferredContentSize = CGSize(width: 320.0, height: 600.0)
-//        }
-        
-        
-//        ref.observeAuthEventWithBlock({ authData in
-//            if authData != nil {
-//                // user authenticated with Firebase
-//                println(authData)
-//                self.auth = authData
-//            } else {
-//                self.performSegueWithIdentifier("checkAuth", sender: self.navigationController)
-//            }
-//        })
-        
+    
         
     }
     
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(true)
+    
+    //  MARK: - Actions and Outlets
+
+    @IBAction func sortClubs(sender: AnyObject) {
+        println("clicked")
         
         
+        var clubsCopy: AnyObject = clubs.copy()
+        
+        if(sender.selectedSegmentIndex == 1)
+        {
+            println("clicked in if")
+            var indexes = [Int]()
+            for club in clubs{
+                if(club.valueForKey("founders_id") as? String != user!.uid){
+                    println(club.valueForKey("name"))
+                    
+                    clubs.removeObject(club)
+                   // indexes.append(i)
+                }
+            }
+            println(clubs.count)
+            println(clubsCopy.count)
+
+            self.tableView.reloadData()
+        }else{
+            println("test here")
+            self.clubs = clubsCopy as NSMutableArray
+            self.tableView.reloadData()
+        }
+
+    }
+    
+    
+    
+    
+    //  MARK: - Helpers
+    
+    func checkAuth(){
         ref.observeAuthEventWithBlock({ authData in
             if authData != nil {
                 // user authenticated with Firebase
-                println(authData.uid)
-                println(authData)
-                println(authData.provider)
-                println("masterview")
-                self.auth = authData
+                self.user = authData
+                self.setupFirebase()
+                
             } else {
                 self.performSegueWithIdentifier("checkAuth", sender: self)
             }
         })
-
-        
     }
-//    
-//    override func viewWillAppear(animated: Bool) {
-//        super.viewWillAppear(true)
-//        
-//        ref.observeAuthEventWithBlock({ authData in
-//            if authData != nil {
-//                // user authenticated with Firebase
-//                println(authData)
-//                self.auth = authData
-//            } else {
-//                self.performSegueWithIdentifier("checkAuth", sender: self.navigationController)
-//            }
-//        })
-//        
-//    }
     
+
     func  setupFirebase(){
-        
-        clubRef.observeEventType(.Value, withBlock: {
-            snapshot in
-            
-                   self.clubs = snapshot.value.allValues
-                   self.tableView.reloadData()
+
+        usersRef.childByAppendingPath(self.user!.uid + "/clubs").observeEventType(.Value, withBlock: {
+            dataSnapshot in
+            for index in dataSnapshot.value.allKeys{
+                self.getClubs(index as String)
+            }
         })
     
     }
     
-//    func checkAuth() {
-//       
-//        ref.observeAuthEventWithBlock({ authData in
-//            if authData != nil {
-//                // user authenticated with Firebase
-//                println(authData)
-//                self.auth = authData
-//            } else {
-//                // No user is logged in
-//            }
-//        })
-//        
-//    }
-    @IBAction func sortClubs(sender: AnyObject) {
+    func getClubs(club: String){
         
-        println(sender.selectedSegmentIndex)
+        clubsRef.childByAppendingPath("/" + club).observeEventType(.Value, withBlock: {
+            snapshot in
+        
+            self.clubs.addObject(snapshot.value)
+            self.tableView.reloadData()
+        })
     }
     
-    
+
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-//        let segmentedControl = UISegmentedControl(items: ["leading", "following"])
-//        segmentedControl.addTarget(self, action: "filterClub", forControlEvents: .ValueChanged)
-//        // Do any additional setup after loading the view, typically from a nib.
-//        self.navigationItem.titleView = segmentedControl
-        
-//        self.navigationItem.leftBarButtonItem = self.editButtonItem()
-
-//        let addButton = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "insertNewObject:")
-//        self.navigationItem.rightBarButtonItem = addButton
-//        if let split = self.splitViewController {
-//            let controllers = split.viewControllers
-//            self.detailViewController = controllers[controllers.count-1].topViewController as? DetailViewController
-//        }
-//    
+       
+        if self.user == nil {
+            checkAuth()
+        }else{
             setupFirebase()
+        }
+       
 
     }
     
@@ -135,6 +121,7 @@ class MasterViewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    
 
    //  MARK: - Segues
 
@@ -153,7 +140,13 @@ class MasterViewController: UITableViewController {
             let controller = segue.destinationViewController as AuthViewController
             
         }
+        
+        if segue.identifier == "showMessages" {
+            let controller = segue.destinationViewController as GroupChatViewController
+            
+        }
     }
+    
 
    // MARK: - Table View
 
@@ -167,11 +160,6 @@ class MasterViewController: UITableViewController {
         return clubs.count
     }
 
-//    override func tableView(tableView: UITableView, accessoryButtonTappedForRowWithIndexPath indexPath: NSIndexPath) {
-
-//        
-//    }
-//
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as UITableViewCell
@@ -179,23 +167,28 @@ class MasterViewController: UITableViewController {
         let object: AnyObject? = clubs[indexPath.row]
         let imageString = object?.valueForKey("avatar") as? String
         let imageData = NSData(base64EncodedString: imageString!, options: .allZeros)
+        let founders_id: String? = clubs[indexPath.row].valueForKey("founders_id") as? String
         
+        if (founders_id == user?.uid){
+            
+            cell.accessoryType = UITableViewCellAccessoryType.DetailButton
+            
+        }else
+        {
+            cell.accessoryType = UITableViewCellAccessoryType.None
+        }
         
         
         cell.imageView?.clipsToBounds = true
         cell.imageView?.layer.cornerRadius = 5
         cell.imageView?.image = UIImage(data: imageData!)
         
-        cell.textLabel!.text = object?.valueForKey("name") as? String
-        cell.detailTextLabel?.text = object?.valueForKey("description") as? String
-        cell.accessoryView?.setValue(object, forKey: "object")
-    
-//        cell.accessoryView?.setValue
-        //cell.accessoryType = UITableViewCellAccessoryType.DetailButton
+        cell.textLabel!.text = object?.valueForKey("name") as? String;
+        cell.detailTextLabel?.text = object?.valueForKey("description") as? String;
+ 
+
         
-       
-        
-        
+  
         
         return cell
         
@@ -208,16 +201,6 @@ class MasterViewController: UITableViewController {
         // Return false if you do not want the specified item to be editable.
         return true
     }
-
-//    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-//        if editingStyle == .Delete {
-//            objects.removeObjectAtIndex(indexPath.row)
-//            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-//        } else if editingStyle == .Insert {
-//            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
-//        }
-//    }
-
 
 }
 
