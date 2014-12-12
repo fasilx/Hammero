@@ -9,55 +9,70 @@
 import UIKit
 
 class MasterViewController: UITableViewController {
-
+    
     var detailViewController: DetailViewController? = nil
     var authViewController: AuthViewController? = nil
     
     var ref = Firebase(url: "https://peopler.firebaseio.com")
     var clubsRef = Firebase(url:"https://peopler.firebaseio.com/clubs")
     var usersRef = Firebase(url: "https://peopler.firebaseio.com/users")
-   
+    
     var clubs  = NSMutableArray()
     var user: FAuthData? = nil
     
+    // vars for tableView.selectedSegmentIndex IBaction
+    
+    var removedIndexes = NSMutableIndexSet()
+    
+    var buffer = NSMutableArray()
+   
+    
+    
+    
 
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-    
+        
         
     }
     
     
     //  MARK: - Actions and Outlets
-
+    
     @IBAction func sortClubs(sender: AnyObject) {
-        println("clicked")
-        
-        
-        var clubsCopy: AnyObject = clubs.copy()
-        
+
         if(sender.selectedSegmentIndex == 1)
         {
-            println("clicked in if")
-            var indexes = [Int]()
-            for club in clubs{
-                if(club.valueForKey("founders_id") as? String != user!.uid){
-                    println(club.valueForKey("name"))
+       
+            var indexes = [NSIndexPath]()
+     
+            for index in 0...clubs.count - 1 {
+                if(clubs[index].valueForKey("founders_id") as? String != user!.uid as String){
+                    indexes.append(NSIndexPath(forRow: index, inSection: 0))
+                    removedIndexes.addIndex(index)
                     
-                    clubs.removeObject(club)
-                   // indexes.append(i)
                 }
+                println(clubs[index].valueForKey("name"))
             }
-            println(clubs.count)
-            println(clubsCopy.count)
+            
+            self.clubs.removeObjectsAtIndexes(removedIndexes)
+            println("\n")
+            println("imediately after remove")
+            for i in 0...clubs.count - 1{
+                println(clubs[i].valueForKey("name"))
+            }
 
-            self.tableView.reloadData()
+            tableView.beginUpdates()
+            tableView.deleteRowsAtIndexPaths(indexes, withRowAnimation: .Automatic)
+            tableView.endUpdates()
+            
+
+    
         }else{
-            println("test here")
-            self.clubs = clubsCopy as NSMutableArray
-            self.tableView.reloadData()
+            clubs = buffer.mutableCopy() as NSMutableArray
+            tableView.reloadData()
         }
-
     }
     
     
@@ -78,62 +93,63 @@ class MasterViewController: UITableViewController {
         })
     }
     
-
+    
     func  setupFirebase(){
-
+        
         usersRef.childByAppendingPath(self.user!.uid + "/clubs").observeEventType(.Value, withBlock: {
             dataSnapshot in
             for index in dataSnapshot.value.allKeys{
                 self.getClubs(index as String)
             }
         })
-    
+        
     }
     
     func getClubs(club: String){
         
         clubsRef.childByAppendingPath("/" + club).observeEventType(.Value, withBlock: {
             snapshot in
-        
+            
             self.clubs.addObject(snapshot.value)
+            self.buffer.addObject(snapshot.value)
             self.tableView.reloadData()
         })
     }
     
-
-
-
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-       
+        
         if self.user == nil {
             checkAuth()
         }else{
             setupFirebase()
         }
-       
-
+        
+        
     }
     
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
     
-
-   //  MARK: - Segues
-
+    
+    
+    //  MARK: - Segues
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "showDetail" {
-          
+            
             let tableViewCell = sender as UITableViewCell
             let indexPath = tableView.indexPathForCell(tableViewCell)
             let controller = segue.destinationViewController as DetailViewController
             controller.detailItem = clubs[indexPath!.row]
-                //                controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
-                controller.navigationItem.leftItemsSupplementBackButton = true
+            //                controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
+            controller.navigationItem.leftItemsSupplementBackButton = true
         }
         
         if segue.identifier == "checkAuth" {
@@ -147,23 +163,23 @@ class MasterViewController: UITableViewController {
         }
     }
     
-
-   // MARK: - Table View
-
+    
+    // MARK: - Table View
+    
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-       
+        
         return 1
     }
-
+    
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         return clubs.count
     }
-
-
+    
+    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as UITableViewCell
-
+        
         let object: AnyObject? = clubs[indexPath.row]
         let imageString = object?.valueForKey("avatar") as? String
         let imageData = NSData(base64EncodedString: imageString!, options: .allZeros)
@@ -185,22 +201,22 @@ class MasterViewController: UITableViewController {
         
         cell.textLabel!.text = object?.valueForKey("name") as? String;
         cell.detailTextLabel?.text = object?.valueForKey("description") as? String;
- 
-
         
-  
+        
+        
+        
         
         return cell
         
     }
     
-  
-   
-
+    
+    
+    
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         // Return false if you do not want the specified item to be editable.
         return true
     }
-
+    
 }
 
