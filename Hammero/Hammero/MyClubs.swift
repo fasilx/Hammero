@@ -1,5 +1,5 @@
 //
-//  MasterViewController.swift
+//  MyClubs.swift
 //  Hammero
 //
 //  Created by fasil fikreab on 12/4/14.
@@ -8,10 +8,12 @@
 
 import UIKit
 
-class MasterViewController: UITableViewController {
+
+class MyClubs: UITableViewController {
     
-    var detailViewController: DetailViewController? = nil
-    var authViewController: AuthViewController? = nil
+    var editMyClubs: EditMyClubs? = nil
+    var auth: Auth? = nil
+   
     
     var ref = Firebase(url: "https://peopler.firebaseio.com")
     var clubsRef = Firebase(url:"https://peopler.firebaseio.com/clubs")
@@ -53,21 +55,13 @@ class MasterViewController: UITableViewController {
                     removedIndexes.addIndex(index)
                     
                 }
-                println(clubs[index].valueForKey("name"))
             }
             
             self.clubs.removeObjectsAtIndexes(removedIndexes)
-            println("\n")
-            println("imediately after remove")
-            for i in 0...clubs.count - 1{
-                println(clubs[i].valueForKey("name"))
-            }
 
             tableView.beginUpdates()
             tableView.deleteRowsAtIndexPaths(indexes, withRowAnimation: .Automatic)
             tableView.endUpdates()
-            
-
     
         }else{
             clubs = buffer.mutableCopy() as NSMutableArray
@@ -94,6 +88,7 @@ class MasterViewController: UITableViewController {
     }
     
     
+    
     func  setupFirebase(){
         
         usersRef.childByAppendingPath(self.user!.uid + "/clubs").observeEventType(.Value, withBlock: {
@@ -110,8 +105,11 @@ class MasterViewController: UITableViewController {
         clubsRef.childByAppendingPath("/" + club).observeEventType(.Value, withBlock: {
             snapshot in
             
-            self.clubs.addObject(snapshot.value)
-            self.buffer.addObject(snapshot.value)
+            var temp: AnyObject = snapshot.value
+            temp.addEntriesFromDictionary(["clubID": snapshot.key])
+
+            self.clubs.addObject(temp)
+            self.buffer.addObject(temp)
             self.tableView.reloadData()
         })
     }
@@ -122,6 +120,8 @@ class MasterViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+      
+        
         if self.user == nil {
             checkAuth()
         }else{
@@ -130,6 +130,7 @@ class MasterViewController: UITableViewController {
         
         
     }
+    
     
     
     override func didReceiveMemoryWarning() {
@@ -142,23 +143,15 @@ class MasterViewController: UITableViewController {
     //  MARK: - Segues
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "showDetail" {
-            
-            let tableViewCell = sender as UITableViewCell
-            let indexPath = tableView.indexPathForCell(tableViewCell)
-            let controller = segue.destinationViewController as DetailViewController
-            controller.detailItem = clubs[indexPath!.row]
-            //                controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
-            controller.navigationItem.leftItemsSupplementBackButton = true
-        }
+
         
         if segue.identifier == "checkAuth" {
-            let controller = segue.destinationViewController as AuthViewController
+            let controller = segue.destinationViewController as Auth
             
         }
         
         if segue.identifier == "showMessages" {
-            let controller = segue.destinationViewController as GroupChatViewController
+            let controller = segue.destinationViewController as GroupChat
             
         }
     }
@@ -178,7 +171,11 @@ class MasterViewController: UITableViewController {
     
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as UITableViewCell
+        
+       
+        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as MyClubsCell
+        
+     // println(cell)
         
         let object: AnyObject? = clubs[indexPath.row]
         let imageString = object?.valueForKey("avatar") as? String
@@ -195,28 +192,52 @@ class MasterViewController: UITableViewController {
         }
         
         
-        cell.imageView?.clipsToBounds = true
-        cell.imageView?.layer.cornerRadius = 5
-        cell.imageView?.image = UIImage(data: imageData!)
         
-        cell.textLabel!.text = object?.valueForKey("name") as? String;
-        cell.detailTextLabel?.text = object?.valueForKey("description") as? String;
+        let clubAvatar = UIImage(data: imageData!)
+        let clubName = object?.valueForKey("name") as? String
+        let clubDescription = object?.valueForKey("description") as? String
+        
+        // temp values
+        let clubFounder =    "me"
+        
+
+        
+        cell.avatar.layer.cornerRadius =  cell.avatar.frame.width/2 // circular avatar
+        
+        cell.avatar.layer.borderColor = UIColor.lightGrayColor().CGColor
+
+        cell.avatar.layer.borderWidth = 2.0
         
         
+//      
+//      
+//       cell.avatar.layer.
+//       cell.avatar.layer.borderWidth = 2.0
+////       cell.avatar.layer.borderColor = UIColor.blackColor()
+//       cell.avatar.clipsToBounds = true
+//        
+//       
         
-        
-        
+        cell.setCell(clubName!, clubDescription: clubDescription!, clubFounder: clubFounder, avatar: clubAvatar!)
+       
+       
         return cell
         
     }
     
-    
-    
-    
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+    override func tableView(tableView: UITableView, accessoryButtonTappedForRowWithIndexPath indexPath: NSIndexPath) {
+        
+        let club: AnyObject = clubs[indexPath.row]
+        let instance = MyClubsSingleton.sharedInstance
+        instance.setClub(club)
+        println("am here")
+        println(clubs[indexPath.row].valueForKey("clubID"))
     }
+    
+    
+    
+    
+
     
 }
 

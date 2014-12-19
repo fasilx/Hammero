@@ -1,5 +1,5 @@
 //
-//  AuthViewController.swift
+//  Auth.swift
 //  Hammero
 //
 //  Created by fasil fikreab on 12/8/14.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AuthViewController: UIViewController {
+class Auth: UIViewController {
 
     var ref = Firebase(url: "https://peopler.firebaseio.com")
     

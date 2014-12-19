@@ -1,5 +1,5 @@
 //
-//  GroupChatViewController.swift
+//  GroupChat.swift
 //  Hammero
 //
 //  Created by fasil fikreab on 12/7/14.
@@ -10,7 +10,7 @@
 import UIKit
 import Foundation
 
-class GroupChatViewController: JSQMessagesViewController {
+class GroupChat: JSQMessagesViewController {
     
     var user: FAuthData?
     var messages = [JSQMessage]()
