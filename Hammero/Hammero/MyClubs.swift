@@ -9,7 +9,7 @@
 import UIKit
 
 
-class MyClubs: UITableViewController {
+class MyClubs: UITableViewController, UISearchBarDelegate, UISearchDisplayDelegate {
     
     var editMyClubs: EditMyClubs? = nil
     var auth: Auth? = nil
@@ -28,6 +28,7 @@ class MyClubs: UITableViewController {
     
     var buffer = NSMutableArray()
    
+    @IBOutlet var searchClubs: UISearchBar!
     
     
     
@@ -120,7 +121,7 @@ class MyClubs: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-      
+        println("view did load" )
         
         if self.user == nil {
             checkAuth()
@@ -131,7 +132,23 @@ class MyClubs: UITableViewController {
         
     }
     
-    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(true)
+        
+        let instance = MyClubsSingleton.sharedInstance
+        if(instance.getClubModification()){
+             println("club Modified")
+             println(instance.getRow())
+            clubs[instance.getRow()] = instance.getClub()
+            buffer[instance.getRow()] = instance.getClub()
+            println(instance.getClub().valueForKey("name"))
+            println( clubs[instance.getRow()].valueForKey("name"))
+        }
+       
+
+        
+    }
+
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -176,6 +193,8 @@ class MyClubs: UITableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as MyClubsCell
         
      // println(cell)
+     
+        
         
         let object: AnyObject? = clubs[indexPath.row]
         let imageString = object?.valueForKey("avatar") as? String
@@ -229,8 +248,9 @@ class MyClubs: UITableViewController {
         
         let club: AnyObject = clubs[indexPath.row]
         let instance = MyClubsSingleton.sharedInstance
-        instance.setClub(club)
-        println("am here")
+        instance.setClub(club, atRow: indexPath.row)
+        println("am here \(indexPath.row)")
+        println(instance.getRow())
         println(clubs[indexPath.row].valueForKey("clubID"))
     }
     

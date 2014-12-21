@@ -51,6 +51,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="800" height="800"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" id="YKD-mv-zyn">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </searchBar>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleAspectFill" selectionStyle="blue" accessoryType="detailDisclosureButton" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" id="WCw-Qf-5nD" customClass="MyClubsCell" customModule="Hammero" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="86" width="320" height="44"/>
@@ -143,12 +148,13 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="800" height="800"/>
                     <connections>
+                        <outlet property="searchClubs" destination="YKD-mv-zyn" id="EFx-yQ-gUX"/>
                         <segue destination="lGy-bd-pXc" kind="presentation" identifier="checkAuth" id="Vy4-9o-x4h"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rux-fX-hf1" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="573" y="-1000"/>
+            <point key="canvasLocation" x="717" y="-1693.5"/>
         </scene>
         <!--Edit Club-->
         <scene sceneID="5fD-zX-sOw">
@@ -321,6 +327,9 @@
                                 <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
                                     <rect key="frame" x="43" y="297" width="287" height="30"/>
                                 </variation>
+                                <connections>
+                                    <outlet property="delegate" destination="3mH-5J-P7a" id="vFx-3x-Dv5"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="NOd-lw-4P9">
                                 <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
@@ -332,6 +341,9 @@
                                 <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
                                     <rect key="frame" x="43" y="370" width="287" height="30"/>
                                 </variation>
+                                <connections>
+                                    <outlet property="delegate" destination="3mH-5J-P7a" id="9B7-zH-p0a"/>
+                                </connections>
                             </textField>
                             <imageView contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-40.png" translatesAutoresizingMaskIntoConstraints="NO" id="Eur-JC-WnJ">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
@@ -394,11 +406,12 @@
                         <outlet property="avatarImage" destination="Eur-JC-WnJ" id="Bb7-WE-tyJ"/>
                         <outlet property="clubDescriptionField" destination="NOd-lw-4P9" id="Och-4d-JhL"/>
                         <outlet property="clubNameField" destination="8Yz-c6-a45" id="vip-a7-ifu"/>
+                        <segue destination="lGy-bd-pXc" kind="show" identifier="checkAuth" id="C1G-G4-lgR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dMJ-Et-Gf1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2862" y="-1761"/>
+            <point key="canvasLocation" x="2701.5" y="-1890"/>
         </scene>
         <!--Auth-->
         <scene sceneID="qRu-m2-Zq4">
@@ -523,4 +536,7 @@
         <image name="group-25.png" width="25" height="25"/>
         <image name="icon-40.png" width="40" height="40"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="Vy4-9o-x4h"/>
+    </inferredMetricsTieBreakers>
 </document>

@@ -19,15 +19,31 @@ class MyClubsSingleton: NSObject {
         }
         
     var club : AnyObject = [:]
+    var row: Int = -1
+    var clubModified : Bool = false
     
     
-    func setClub (club: AnyObject   ) {
+    func setClub (club: AnyObject, atRow: Int   ) {
         self.club = club
+        self.row = atRow
     }
     
     func   getClub () -> AnyObject {
         
         return self.club
+    }
+    
+    func setClubModification(modified: Bool){
+        
+        self.clubModified = modified
+    }
+    
+    func getClubModification() -> Bool{
+        return self.clubModified
+    }
+    
+    func getRow() -> Int {
+        return self.row
     }
     
     
