@@ -43,6 +43,85 @@
             </objects>
             <point key="canvasLocation" x="-1052" y="-438.99999999999994"/>
         </scene>
+        <!--Group Chat-->
+        <scene sceneID="Dft-ci-77D">
+            <objects>
+                <viewController id="K75-hP-9Ep" customClass="GroupChat" customModule="Hammero" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="7af-5r-9KA"/>
+                        <viewControllerLayoutGuide type="bottom" id="5W0-P6-Lqo"/>
+                    </layoutGuides>
+                    <scrollView key="view" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" id="pb1-KQ-1JV">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </scrollView>
+                    <extendedEdge key="edgesForExtendedLayout"/>
+                    <connections>
+                        <outlet property="scroller" destination="pb1-KQ-1JV" id="aSu-q6-E0l"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XXu-EF-2Hb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2089.5" y="-3112"/>
+        </scene>
+        <!--Chat-->
+        <scene sceneID="cF0-wM-Sm0">
+            <objects>
+                <collectionViewController id="hqM-gc-PDY" customClass="Chat" customModule="Hammero" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="Rry-pG-nkj">
+                        <rect key="frame" x="0.0" y="0.0" width="800" height="800"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="rkb-pf-HlU">
+                            <size key="itemSize" width="300" height="100"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="3S2-39-Q64" customClass="ChatCollectionCell" customModule="Hammero" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="300" height="100"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt " translatesAutoresizingMaskIntoConstraints="NO" id="Je0-PW-fGm">
+                                            <rect key="frame" x="27" y="26" width="200" height="90"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                        </textView>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IYn-7s-nfs">
+                                            <rect key="frame" x="241" y="35" width="200" height="71"/>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LiY-Cz-lz2">
+                                            <rect key="frame" x="470" y="74" width="107" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <outlet property="imageView" destination="IYn-7s-nfs" id="yr0-zI-KoG"/>
+                                    <outlet property="labelView" destination="LiY-Cz-lz2" id="UWd-vu-VRW"/>
+                                    <outlet property="textView" destination="Je0-PW-fGm" id="ehm-HT-OZi"/>
+                                </connections>
+                            </collectionViewCell>
+                        </cells>
+                        <connections>
+                            <outlet property="dataSource" destination="hqM-gc-PDY" id="jIv-oN-IaO"/>
+                            <outlet property="delegate" destination="hqM-gc-PDY" id="xgh-7u-uYb"/>
+                        </connections>
+                    </collectionView>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XKF-V1-Hvs" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-552" y="-3454"/>
+        </scene>
         <!--Master-->
         <scene sceneID="smW-Zh-WAh">
             <objects>
@@ -51,10 +130,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="800" height="800"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <searchBar key="tableHeaderView" contentMode="redraw" id="YKD-mv-zyn">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" placeholder="search" id="GHh-iX-UYw">
+                            <rect key="frame" x="0.0" y="64" width="800" height="44"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <textInputTraits key="textInputTraits"/>
+                            <connections>
+                                <outlet property="delegate" destination="7bK-jq-Zjz" id="KhJ-jU-dGY"/>
+                            </connections>
                         </searchBar>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleAspectFill" selectionStyle="blue" accessoryType="detailDisclosureButton" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" id="WCw-Qf-5nD" customClass="MyClubsCell" customModule="Hammero" customModuleProvider="target">
@@ -122,12 +204,12 @@
                                     <outlet property="clubFounder" destination="92l-I7-wNu" id="kA3-rj-VXb"/>
                                     <outlet property="clubName" destination="deG-K1-h4j" id="YE5-F3-OnX"/>
                                     <segue destination="28e-V8-bzs" kind="show" identifier="" trigger="accessoryAction" id="0Le-1G-X5M"/>
+                                    <segue destination="hqM-gc-PDY" kind="show" id="WuR-DN-isb"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
                         <sections/>
                         <connections>
-                            <outlet property="dataSource" destination="7bK-jq-Zjz" id="Gho-Na-rnu"/>
                             <outlet property="delegate" destination="7bK-jq-Zjz" id="RA6-mI-bju"/>
                         </connections>
                     </tableView>
@@ -148,13 +230,23 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="800" height="800"/>
                     <connections>
-                        <outlet property="searchClubs" destination="YKD-mv-zyn" id="EFx-yQ-gUX"/>
+                        <outlet property="searchClubs" destination="GHh-iX-UYw" id="sMR-oD-ToY"/>
+                        <outlet property="searchDisplayController" destination="Lp5-0A-f9t" id="IFa-eC-4sj"/>
                         <segue destination="lGy-bd-pXc" kind="presentation" identifier="checkAuth" id="Vy4-9o-x4h"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rux-fX-hf1" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="Lp5-0A-f9t">
+                    <connections>
+                        <outlet property="delegate" destination="7bK-jq-Zjz" id="cEK-NG-MsE"/>
+                        <outlet property="searchBar" destination="GHh-iX-UYw" id="lhk-6C-Jac"/>
+                        <outlet property="searchContentsController" destination="7bK-jq-Zjz" id="v09-1V-OC7"/>
+                        <outlet property="searchResultsDataSource" destination="7bK-jq-Zjz" id="Edt-42-br3"/>
+                        <outlet property="searchResultsDelegate" destination="7bK-jq-Zjz" id="gVX-Kg-wgS"/>
+                    </connections>
+                </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="717" y="-1693.5"/>
+            <point key="canvasLocation" x="-315" y="-2454"/>
         </scene>
         <!--Edit Club-->
         <scene sceneID="5fD-zX-sOw">
@@ -303,7 +395,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qe0-eE-4vR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2997" y="-1053"/>
+            <point key="canvasLocation" x="2607" y="-1760"/>
         </scene>
         <!--Edit club-->
         <scene sceneID="EFK-RL-8JP">
@@ -411,7 +503,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dMJ-Et-Gf1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2701.5" y="-1890"/>
+            <point key="canvasLocation" x="1129.5" y="-1784"/>
         </scene>
         <!--Auth-->
         <scene sceneID="qRu-m2-Zq4">
@@ -470,7 +562,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wmX-sa-9sE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1555" y="-462"/>
+            <point key="canvasLocation" x="768" y="-730"/>
         </scene>
         <!--my clubs-->
         <scene sceneID="r0u-S5-3Jq">
@@ -526,7 +618,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BVQ-ZR-mUW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1137" y="-2707.5"/>
+            <point key="canvasLocation" x="1197" y="-3100"/>
         </scene>
     </scenes>
     <resources>

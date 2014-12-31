@@ -51,10 +51,11 @@
 		156955701A379155003B3144 /* JSQMessagesTypingIndicatorFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 156955451A379155003B3144 /* JSQMessagesTypingIndicatorFooterView.xib */; };
 		156955721A37958F003B3144 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 156955711A37958F003B3144 /* AudioToolbox.framework */; };
 		156A93C91A3FF00800366B96 /* MyClubsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156A93C81A3FF00800366B96 /* MyClubsCell.swift */; };
+		15707A9B1A53B6C30039A8E7 /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15707A9A1A53B6C30039A8E7 /* Chat.swift */; };
 		157D41791A4338F70082C29E /* edit-32.png in Resources */ = {isa = PBXBuildFile; fileRef = 157D41781A4338F70082C29E /* edit-32.png */; };
 		157D417B1A4369920082C29E /* MyClubsSingleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157D417A1A4369920082C29E /* MyClubsSingleton.swift */; };
 		15A8DCDD1A34245600634C66 /* icon-40@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 15A8DCDC1A34245600634C66 /* icon-40@2x.png */; };
-		15A8DCDF1A3526EF00634C66 /* GroupChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A8DCDE1A3526EE00634C66 /* GroupChatViewController.swift */; };
+		15A8DCDF1A3526EF00634C66 /* GroupChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A8DCDE1A3526EE00634C66 /* GroupChat.swift */; };
 		15A8DCE71A3639B600634C66 /* Auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A8DCE61A3639B600634C66 /* Auth.swift */; };
 		15A8DCEB1A36FD0600634C66 /* group-25.png in Resources */ = {isa = PBXBuildFile; fileRef = 15A8DCEA1A36FD0600634C66 /* group-25.png */; };
 		15A8DCEE1A370F1200634C66 /* conference-25.png in Resources */ = {isa = PBXBuildFile; fileRef = 15A8DCED1A370F1200634C66 /* conference-25.png */; };
@@ -72,6 +73,7 @@
 		15AE12391A31758300C30B11 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15AE12381A31758300C30B11 /* CFNetwork.framework */; };
 		15AE123B1A3175A600C30B11 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15AE123A1A3175A600C30B11 /* Security.framework */; };
 		15AE123D1A3175F200C30B11 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15AE123C1A3175F200C30B11 /* SystemConfiguration.framework */; };
+		15C7BBFC1A53F0360093D044 /* ChatCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15C7BBFB1A53F0360093D044 /* ChatCollectionCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -184,10 +186,11 @@
 		156955451A379155003B3144 /* JSQMessagesTypingIndicatorFooterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JSQMessagesTypingIndicatorFooterView.xib; sourceTree = "<group>"; };
 		156955711A37958F003B3144 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		156A93C81A3FF00800366B96 /* MyClubsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyClubsCell.swift; sourceTree = "<group>"; };
+		15707A9A1A53B6C30039A8E7 /* Chat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
 		157D41781A4338F70082C29E /* edit-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "edit-32.png"; path = "../../iOS7_icons_free/PNG/32/Editing/edit-32.png"; sourceTree = "<group>"; };
 		157D417A1A4369920082C29E /* MyClubsSingleton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyClubsSingleton.swift; sourceTree = "<group>"; };
 		15A8DCDC1A34245600634C66 /* icon-40@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-40@2x.png"; sourceTree = "<group>"; };
-		15A8DCDE1A3526EE00634C66 /* GroupChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupChatViewController.swift; sourceTree = "<group>"; };
+		15A8DCDE1A3526EE00634C66 /* GroupChat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupChat.swift; sourceTree = "<group>"; };
 		15A8DCE61A3639B600634C66 /* Auth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Auth.swift; path = ../Auth.swift; sourceTree = "<group>"; };
 		15A8DCEA1A36FD0600634C66 /* group-25.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "group-25.png"; path = "Hammero/group-25.png"; sourceTree = "<group>"; };
 		15A8DCED1A370F1200634C66 /* conference-25.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "conference-25.png"; sourceTree = "<group>"; };
@@ -210,6 +213,7 @@
 		15AE123A1A3175A600C30B11 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		15AE123C1A3175F200C30B11 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		15AE123E1A31775100C30B11 /* Hammero-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Hammero-Bridging-Header.h"; sourceTree = "<group>"; };
+		15C7BBFB1A53F0360093D044 /* ChatCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatCollectionCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -395,6 +399,7 @@
 			isa = PBXGroup;
 			children = (
 				156A93C81A3FF00800366B96 /* MyClubsCell.swift */,
+				15C7BBFB1A53F0360093D044 /* ChatCollectionCell.swift */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -402,10 +407,11 @@
 		156A93CB1A3FF02300366B96 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				15707A9A1A53B6C30039A8E7 /* Chat.swift */,
 				15A8DCE61A3639B600634C66 /* Auth.swift */,
 				15AE12081A31568E00C30B11 /* EditMyClubs.swift */,
 				15AE12061A31568E00C30B11 /* MyClubs.swift */,
-				15A8DCDE1A3526EE00634C66 /* GroupChatViewController.swift */,
+				15A8DCDE1A3526EE00634C66 /* GroupChat.swift */,
 				156A93CA1A3FF01100366B96 /* Cells */,
 			);
 			name = Controllers;
@@ -640,7 +646,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				15A8DCDF1A3526EF00634C66 /* GroupChatViewController.swift in Sources */,
+				15A8DCDF1A3526EF00634C66 /* GroupChat.swift in Sources */,
 				156955591A379155003B3144 /* JSQLocationMediaItem.m in Sources */,
 				1569554E1A379155003B3144 /* JSQMessagesKeyboardController.m in Sources */,
 				156955631A379155003B3144 /* JSQMessagesCollectionViewCellIncoming.m in Sources */,
@@ -650,6 +656,7 @@
 				1569556D1A379155003B3144 /* JSQMessagesToolbarContentView.m in Sources */,
 				156955681A379155003B3144 /* JSQMessagesInputToolbar.m in Sources */,
 				15AE12091A31568E00C30B11 /* EditMyClubs.swift in Sources */,
+				15C7BBFC1A53F0360093D044 /* ChatCollectionCell.swift in Sources */,
 				156955551A379155003B3144 /* JSQMessagesToolbarButtonFactory.m in Sources */,
 				156955491A379155003B3144 /* NSString+JSQMessages.m in Sources */,
 				156955541A379155003B3144 /* JSQMessagesTimestampFormatter.m in Sources */,
@@ -677,6 +684,7 @@
 				1569555F1A379155003B3144 /* JSQVideoMediaItem.m in Sources */,
 				1569555E1A379155003B3144 /* JSQPhotoMediaItem.m in Sources */,
 				156A93C91A3FF00800366B96 /* MyClubsCell.swift in Sources */,
+				15707A9B1A53B6C30039A8E7 /* Chat.swift in Sources */,
 				1569554C1A379155003B3144 /* UIImage+JSQMessages.m in Sources */,
 				156955521A379155003B3144 /* JSQMessagesBubbleImageFactory.m in Sources */,
 				1569555D1A379155003B3144 /* JSQMessagesBubbleImage.m in Sources */,

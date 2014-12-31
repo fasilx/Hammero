@@ -20,17 +20,20 @@ class MyClubs: UITableViewController, UISearchBarDelegate, UISearchDisplayDelega
     var usersRef = Firebase(url: "https://peopler.firebaseio.com/users")
     
     var clubs  = NSMutableArray()
+    var buffer = NSMutableArray()
+    
     var user: FAuthData? = nil
     
     // vars for tableView.selectedSegmentIndex IBaction
     
     var removedIndexes = NSMutableIndexSet()
     
-    var buffer = NSMutableArray()
+    var filteredClubs: [AnyObject] = []
    
+   
+    
+    
     @IBOutlet var searchClubs: UISearchBar!
-    
-    
     
 
     
@@ -122,6 +125,7 @@ class MyClubs: UITableViewController, UISearchBarDelegate, UISearchDisplayDelega
         super.viewDidLoad()
         
         println("view did load" )
+    
         
         if self.user == nil {
             checkAuth()
@@ -183,7 +187,11 @@ class MyClubs: UITableViewController, UISearchBarDelegate, UISearchDisplayDelega
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return clubs.count
+        if tableView == self.searchDisplayController!.searchResultsTableView {
+            return self.filteredClubs.count
+        } else {
+            return self.clubs.count
+        }
     }
     
     
@@ -194,9 +202,15 @@ class MyClubs: UITableViewController, UISearchBarDelegate, UISearchDisplayDelega
         
      // println(cell)
      
-        
+        if tableView == self.searchDisplayController!.searchResultsTableView {
+             let object: AnyObject? = filteredClubs[indexPath.row]
+        } else {
+             let object: AnyObject? = clubs[indexPath.row]
+        }
         
         let object: AnyObject? = clubs[indexPath.row]
+        
+        
         let imageString = object?.valueForKey("avatar") as? String
         let imageData = NSData(base64EncodedString: imageString!, options: .allZeros)
         let founders_id: String? = clubs[indexPath.row].valueForKey("founders_id") as? String
@@ -254,10 +268,33 @@ class MyClubs: UITableViewController, UISearchBarDelegate, UISearchDisplayDelega
         println(clubs[indexPath.row].valueForKey("clubID"))
     }
     
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+           let instance = MyClubsSingleton.sharedInstance
+            instance.setClub(clubs[indexPath.row], atRow: indexPath.row)
+        
+    }
     
     
+    // Mark: - Search Bar
     
-
+    func searchDisplayController(controller: UISearchDisplayController, shouldReloadTableForSearchString searchString: String!) -> Bool {
+       
+        let arr : [AnyObject] = clubs
+        self.filteredClubs = arr.filter({(s : AnyObject) -> Bool in
+           
+            let stringMatch = s.valueForKey("name") as String
+            println(stringMatch.rangeOfString(searchString) != nil)
+            return stringMatch.rangeOfString(searchString) != nil
+            
+            })
+        println(filteredClubs)
+        return true
+    }
+    
+    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
+       searchBar.endEditing(true)
+    }
+    
     
 }
 
