@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1523BF271A540776004166BC /* ChatLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1523BF261A540776004166BC /* ChatLayout.swift */; };
+		1523BF2B1A56C9DD004166BC /* ChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1523BF2A1A56C9DD004166BC /* ChatCell.swift */; };
 		156955461A379155003B3144 /* JSQMessagesAssets.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 156954DB1A379154003B3144 /* JSQMessagesAssets.bundle */; };
 		156955471A379155003B3144 /* JSQMessages.strings in Resources */ = {isa = PBXBuildFile; fileRef = 156954DD1A379154003B3144 /* JSQMessages.strings */; };
 		156955491A379155003B3144 /* NSString+JSQMessages.m in Sources */ = {isa = PBXBuildFile; fileRef = 156954F11A379154003B3144 /* NSString+JSQMessages.m */; };
@@ -73,7 +75,6 @@
 		15AE12391A31758300C30B11 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15AE12381A31758300C30B11 /* CFNetwork.framework */; };
 		15AE123B1A3175A600C30B11 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15AE123A1A3175A600C30B11 /* Security.framework */; };
 		15AE123D1A3175F200C30B11 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15AE123C1A3175F200C30B11 /* SystemConfiguration.framework */; };
-		15C7BBFC1A53F0360093D044 /* ChatCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15C7BBFB1A53F0360093D044 /* ChatCollectionCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,6 +88,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1523BF261A540776004166BC /* ChatLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatLayout.swift; sourceTree = "<group>"; };
+		1523BF2A1A56C9DD004166BC /* ChatCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatCell.swift; sourceTree = "<group>"; };
 		156954DB1A379154003B3144 /* JSQMessagesAssets.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = JSQMessagesAssets.bundle; sourceTree = "<group>"; };
 		156954DE1A379154003B3144 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/JSQMessages.strings; sourceTree = "<group>"; };
 		156954DF1A379154003B3144 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/JSQMessages.strings; sourceTree = "<group>"; };
@@ -213,7 +216,6 @@
 		15AE123A1A3175A600C30B11 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		15AE123C1A3175F200C30B11 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		15AE123E1A31775100C30B11 /* Hammero-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Hammero-Bridging-Header.h"; sourceTree = "<group>"; };
-		15C7BBFB1A53F0360093D044 /* ChatCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatCollectionCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -399,7 +401,6 @@
 			isa = PBXGroup;
 			children = (
 				156A93C81A3FF00800366B96 /* MyClubsCell.swift */,
-				15C7BBFB1A53F0360093D044 /* ChatCollectionCell.swift */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -407,6 +408,8 @@
 		156A93CB1A3FF02300366B96 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				1523BF2A1A56C9DD004166BC /* ChatCell.swift */,
+				1523BF261A540776004166BC /* ChatLayout.swift */,
 				15707A9A1A53B6C30039A8E7 /* Chat.swift */,
 				15A8DCE61A3639B600634C66 /* Auth.swift */,
 				15AE12081A31568E00C30B11 /* EditMyClubs.swift */,
@@ -656,10 +659,10 @@
 				1569556D1A379155003B3144 /* JSQMessagesToolbarContentView.m in Sources */,
 				156955681A379155003B3144 /* JSQMessagesInputToolbar.m in Sources */,
 				15AE12091A31568E00C30B11 /* EditMyClubs.swift in Sources */,
-				15C7BBFC1A53F0360093D044 /* ChatCollectionCell.swift in Sources */,
 				156955551A379155003B3144 /* JSQMessagesToolbarButtonFactory.m in Sources */,
 				156955491A379155003B3144 /* NSString+JSQMessages.m in Sources */,
 				156955541A379155003B3144 /* JSQMessagesTimestampFormatter.m in Sources */,
+				1523BF2B1A56C9DD004166BC /* ChatCell.swift in Sources */,
 				15A8DCE71A3639B600634C66 /* Auth.swift in Sources */,
 				1569556A1A379155003B3144 /* JSQMessagesLoadEarlierHeaderView.m in Sources */,
 				157D417B1A4369920082C29E /* MyClubsSingleton.swift in Sources */,
@@ -686,6 +689,7 @@
 				156A93C91A3FF00800366B96 /* MyClubsCell.swift in Sources */,
 				15707A9B1A53B6C30039A8E7 /* Chat.swift in Sources */,
 				1569554C1A379155003B3144 /* UIImage+JSQMessages.m in Sources */,
+				1523BF271A540776004166BC /* ChatLayout.swift in Sources */,
 				156955521A379155003B3144 /* JSQMessagesBubbleImageFactory.m in Sources */,
 				1569555D1A379155003B3144 /* JSQMessagesBubbleImage.m in Sources */,
 				15AE12051A31568E00C30B11 /* AppDelegate.swift in Sources */,

@@ -8,7 +8,8 @@
 
 import UIKit
 
-class Chat: UICollectionViewController {
+
+class Chat: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     /*
     // Only override drawRect: if you perform custom drawing.
@@ -22,13 +23,18 @@ class Chat: UICollectionViewController {
     var club: AnyObject = [:]
     var ref = Firebase(url: "https://peopler.firebaseio.com")
     
+    
+    @IBOutlet weak var collectionView: UICollectionView!
+    
     var recievedMessages: NSMutableArray =  []
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-       // println("something")
+        self.collectionView?.backgroundColor = UIColor.whiteColor()
+        self.collectionView.dataSource = self
+        self.collectionView?.delegate = self
         
         let instance = MyClubsSingleton.sharedInstance
         self.club = instance.getClub()
@@ -36,6 +42,7 @@ class Chat: UICollectionViewController {
         // println(ref)
         
         self.checkAuth()
+        
         
         
     }
@@ -67,7 +74,7 @@ class Chat: UICollectionViewController {
             
             
             if(dataSnapshot.value as NSObject == NSNull()){
-               // println("it is null")
+                // println("it is null")
                 
                 let notice = UILabel(frame: CGRectMake(5, self.view.bounds.height/3, 0, 0))
                 notice.text = "  There are no conversations started yet  "
@@ -110,11 +117,25 @@ class Chat: UICollectionViewController {
                     
                     self.recievedMessages.addObject(temp)
                     self.collectionView?.reloadData()
-                   // println(self.recievedMessages)
+                    
+                    //                     let x = sortedMessageKeys.count
+                    //                     let y = self.recievedMessages.count
+                    //
+                    //
+                    //                    if(x == y){
+                    //
+                    //                        // collectionview done reloading data, send noticicatin
+                    //                        //println("ready to send notification")
+                    //                        let doneReloading = NSNotificationCenter.defaultCenter()
+                    //                        doneReloading.postNotificationName("doneReloading", object: self, userInfo: nil)
+                    //                    }
+                    
                     
                 })
+                // println(self.recievedMessages.count)
                 
             }
+            
             
         })
         
@@ -126,18 +147,96 @@ class Chat: UICollectionViewController {
     
     
     // Mark:- Collection View
-    override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 6
+    
+    
+    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 3
     }
     
-    override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-        println(self.recievedMessages.count)
-
+    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+        
+        
         return self.recievedMessages.count
     }
     
-    override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("Cell", forIndexPath: indexPath) as ChatCollectionCell
-        return cell
+    
+    
+    
+    
+    
+    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        
+        let messageCell = collectionView.dequeueReusableCellWithReuseIdentifier("MessageCell", forIndexPath: indexPath) as UICollectionViewCell
+        let avatarCell = collectionView.dequeueReusableCellWithReuseIdentifier("AvatarCell", forIndexPath: indexPath) as UICollectionViewCell
+        let imageCell = collectionView.dequeueReusableCellWithReuseIdentifier("ImageCell", forIndexPath: indexPath) as UICollectionViewCell
+        
+        let messageText = self.recievedMessages[indexPath.section][0] as? String
+        let senderEmail = self.recievedMessages[indexPath.section][2] as? String
+        let senderPosition  = self.recievedMessages[indexPath.section][3] as? String
+        
+        let imageMessageString = self.recievedMessages[indexPath.section][1] as String
+        let imageAvatarString = self.recievedMessages[indexPath.section][5] as String
+     
+        
+        
+        let sentTimeString =  self.recievedMessages[indexPath.section][4] as? String
+        
+        var messageView = UITextView(frame: CGRectZero)//CGRectMake(messageCell.frame.origin.x, messageCell.frame.origin.y, 0, 0))
+        messageCell.addSubview(messageView)
+        messageView.text = messageText
+        messageView.sizeToFit()
+        
+        messageCell.frame.size = messageView.frame.size
+        messageView.layer.borderWidth = 1
+        messageView.layer.borderColor = UIColor.redColor().CGColor
+        messageView.backgroundColor = UIColor.greenColor()
+        
+        
+        
+        if(imageAvatarString != ""){
+            
+            let imageAvatarData = NSData(base64EncodedString: imageAvatarString, options: .allZeros)
+            let imageAvatar = UIImage(data: imageAvatarData!)
+            var avatarView = UIImageView(frame: CGRectZero)//CGRectMake(messageCell.frame.origin.x, messageCell.frame.origin.y, 0, 0))
+            avatarCell.addSubview(avatarView)
+            avatarView.image = imageAvatar
+            avatarView.frame.size = CGSizeMake(50, 50)
+            
+            avatarCell.frame.size = avatarView.frame.size
+            avatarView.layer.borderWidth = 1
+            avatarView.layer.borderColor = UIColor.blueColor().CGColor
+            avatarView.layer.cornerRadius = 25
+        }
+        
+        
+        if(imageMessageString != ""){
+
+            let imageMessageData = NSData(base64EncodedString: imageMessageString, options: .allZeros)
+            let imageMessage = UIImage(data: imageMessageData!)
+            
+            var imageView = UIImageView( frame: CGRectZero) //frame: CGRectMake(messageCell.frame.origin.x, messageCell.frame.origin.y, 100, 100))
+            imageView.image = imageMessage
+            imageCell.addSubview(imageView)
+            
+            imageView.frame.size = CGSizeMake(100, 100)
+            
+            imageCell.frame.size = imageView.frame.size
+            imageView.layer.borderWidth = 1
+            imageView.layer.borderColor = UIColor.lightGrayColor().CGColor
+            
+        }
+        // imageCell.backgroundColor = UIColor.redColor()
+        
+        
+        
+        
+        
+        if(indexPath.item == 0){
+            return messageCell
+        }else if (indexPath.item == 1) {
+            return avatarCell
+        }else{
+            return imageCell
+        }
     }
 }
