@@ -163,19 +163,19 @@ class MyClubs: UITableViewController, UISearchBarDelegate, UISearchDisplayDelega
     
     //  MARK: - Segues
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-
-        
-        if segue.identifier == "checkAuth" {
-            let controller = segue.destinationViewController as Auth
-            
-        }
-        
-        if segue.identifier == "showMessages" {
-            let controller = segue.destinationViewController as GroupChat
-            
-        }
-    }
+//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+//
+//        
+//        if segue.identifier == "checkAuth" {
+//            let controller = segue.destinationViewController as Auth
+//            
+//        }
+//        
+//        if segue.identifier == "showMessages" {
+//            let controller = segue.destinationViewController as GroupChat
+//            
+//        }
+//    }
     
     
     // MARK: - Table View

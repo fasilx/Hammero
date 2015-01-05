@@ -22,6 +22,7 @@ class Chat: UIViewController, UICollectionViewDataSource, UICollectionViewDelega
     var user:FAuthData? = nil
     var club: AnyObject = [:]
     var ref = Firebase(url: "https://peopler.firebaseio.com")
+    var currentSectionHeight: CGFloat = 0
     
     
     @IBOutlet weak var collectionView: UICollectionView!
@@ -114,21 +115,22 @@ class Chat: UIViewController, UICollectionViewDataSource, UICollectionViewDelega
                     temp[3] = message.valueForKey("position")!
                     temp[4] =  message.valueForKey("createdAt")!
                     temp[5] =  auth.valueForKey("avatar")!
+                    temp[6] = message.valueForKeyPath("sender.auth.uid")!
                     
                     self.recievedMessages.addObject(temp)
                     self.collectionView?.reloadData()
                     
-                    //                     let x = sortedMessageKeys.count
-                    //                     let y = self.recievedMessages.count
-                    //
-                    //
-                    //                    if(x == y){
-                    //
-                    //                        // collectionview done reloading data, send noticicatin
-                    //                        //println("ready to send notification")
-                    //                        let doneReloading = NSNotificationCenter.defaultCenter()
-                    //                        doneReloading.postNotificationName("doneReloading", object: self, userInfo: nil)
-                    //                    }
+                    let x = sortedMessageKeys.count
+                    let y = self.recievedMessages.count
+                    
+                    
+                    if(x == y){
+                        
+                        // collectionview done reloading data, send noticicatin
+                        //println("ready to send notification")
+                        let doneReloading = NSNotificationCenter.defaultCenter()
+                        doneReloading.postNotificationName("doneReloading", object: self, userInfo: nil)
+                    }
                     
                     
                 })
@@ -159,16 +161,63 @@ class Chat: UIViewController, UICollectionViewDataSource, UICollectionViewDelega
         return self.recievedMessages.count
     }
     
+    func sectionHeight(height: Int) -> CGFloat{
+        
+        return self.currentSectionHeight
+    }
+    
+    func collectionView(minimumLineSpacingForSectionAtIndex: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat {
+        return 4
+    }
     
     
+ 
     
+    func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
+        let footer = collectionView.dequeueReusableSupplementaryViewOfKind(UICollectionElementKindSectionFooter, withReuseIdentifier: "Footer", forIndexPath: indexPath) as UICollectionReusableView
+        
+        
+        footer.backgroundColor  = UIColor.blueColor()
+        
+        
+        return footer
+    }
+
     
-    
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {
+        return UIEdgeInsetsZero
+        
+   
+    }
+//    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize{
+//        return CGSizeMake(self.collectionView.frame.width,  self.currentSectionHeight)
+//    }
+//    
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         
         let messageCell = collectionView.dequeueReusableCellWithReuseIdentifier("MessageCell", forIndexPath: indexPath) as UICollectionViewCell
         let avatarCell = collectionView.dequeueReusableCellWithReuseIdentifier("AvatarCell", forIndexPath: indexPath) as UICollectionViewCell
         let imageCell = collectionView.dequeueReusableCellWithReuseIdentifier("ImageCell", forIndexPath: indexPath) as UICollectionViewCell
+      
+        
+        
+                messageCell.layer.borderWidth = 2
+                messageCell.layer.borderColor = UIColor.redColor().CGColor
+        
+        
+                avatarCell.layer.borderWidth = 2
+                avatarCell.layer.borderColor = UIColor.redColor().CGColor
+        
+        
+        
+                imageCell.layer.borderWidth = 2
+                imageCell.layer.borderColor = UIColor.redColor().CGColor
+        
+        
+    
+        
+        
+        
         
         let messageText = self.recievedMessages[indexPath.section][0] as? String
         let senderEmail = self.recievedMessages[indexPath.section][2] as? String
@@ -176,20 +225,89 @@ class Chat: UIViewController, UICollectionViewDataSource, UICollectionViewDelega
         
         let imageMessageString = self.recievedMessages[indexPath.section][1] as String
         let imageAvatarString = self.recievedMessages[indexPath.section][5] as String
-     
+        
+        let ix = imageCell.frame.origin.x
+        let ax = avatarCell.frame.origin.x
+        let mx = avatarCell.frame.origin.x
+    
+        
         
         
         let sentTimeString =  self.recievedMessages[indexPath.section][4] as? String
         
+        if(imageAvatarString != ""){
+            
+            let imageAvatarData = NSData(base64EncodedString: imageAvatarString, options: .allZeros)
+            let imageAvatar = UIImage(data: imageAvatarData!)
+            var avatarView = UIImageView(frame: CGRectZero)//CGRectMake(messageCell.frame.origin.x, messageCell.frame.origin.y, 0, 0))
+            avatarCell.addSubview(avatarView)
+            avatarView.image = imageAvatar
+            avatarView.frame.size = CGSizeMake(50, 50)
+            
+            avatarCell.frame.size = avatarView.frame.size
+            avatarView.layer.borderWidth = 0.5
+            avatarView.layer.borderColor = UIColor.lightGrayColor().CGColor
+            avatarView.layer.cornerRadius =  avatarView.frame.size.width/2
+            
+            
+        }else{
+            avatarCell.frame.size = CGSizeZero
+        }
+        
+        if(imageMessageString != ""){
+            
+            let imageMessageData = NSData(base64EncodedString: imageMessageString, options: .allZeros)
+            let imageMessage = UIImage(data: imageMessageData!)
+            
+            var imageView = UIImageView( frame: CGRectZero) //frame: CGRectMake(messageCell.frame.origin.x, messageCell.frame.origin.y, 100, 100))
+            imageView.image = imageMessage
+            imageCell.addSubview(imageView)
+            
+            imageView.frame.size = CGSizeMake(100, 100)
+            
+            imageCell.frame.size = imageView.frame.size
+            //            imageView.layer.borderWidth = 1
+            //            imageView.layer.borderColor = UIColor.redColor().CGColor
+            imageView.layer.cornerRadius = imageView.frame.size.width/8
+            imageView.clipsToBounds = true
+            
+            
+        }else{
+            imageCell.frame.size = CGSizeZero
+        }
+        // imageCell.backgroundColor = UIColor.redColor()
+        
+        
+       
+        
+        let dy = imageCell.frame.height
+        messageCell.frame.offset(dx: 0, dy: dy)
+        imageCell.frame.offset(dx: -ix, dy: 0)
+        
+  
+        
+        
+       // self.currentSectionHeight   = messageCell.frame.height + imageCell.frame.height
+      println(self.currentSectionHeight)
+      
+        //collectionView.collectionViewLayout.
+        
+        
+        
+        
         var messageView = UITextView(frame: CGRectZero)//CGRectMake(messageCell.frame.origin.x, messageCell.frame.origin.y, 0, 0))
+        
         messageCell.addSubview(messageView)
         messageView.text = messageText
         messageView.sizeToFit()
         
         messageCell.frame.size = messageView.frame.size
-        messageView.layer.borderWidth = 1
-        messageView.layer.borderColor = UIColor.redColor().CGColor
+        //        messageView.layer.borderWidth = 1
+        //        messageView.layer.borderColor = UIColor.redColor().CGColor
         messageView.backgroundColor = UIColor.greenColor()
+        messageView.layer.cornerRadius = messageView.frame.size.height/8
+        
+        
         
         
         
@@ -203,14 +321,17 @@ class Chat: UIViewController, UICollectionViewDataSource, UICollectionViewDelega
             avatarView.frame.size = CGSizeMake(50, 50)
             
             avatarCell.frame.size = avatarView.frame.size
-            avatarView.layer.borderWidth = 1
-            avatarView.layer.borderColor = UIColor.blueColor().CGColor
-            avatarView.layer.cornerRadius = 25
+            avatarView.layer.borderWidth = 0.5
+            avatarView.layer.borderColor = UIColor.lightGrayColor().CGColor
+            avatarView.layer.cornerRadius =  avatarView.frame.size.width/2
+            
+            
+        }else{
+            avatarCell.frame.size = CGSizeZero
         }
         
-        
         if(imageMessageString != ""){
-
+            
             let imageMessageData = NSData(base64EncodedString: imageMessageString, options: .allZeros)
             let imageMessage = UIImage(data: imageMessageData!)
             
@@ -221,15 +342,19 @@ class Chat: UIViewController, UICollectionViewDataSource, UICollectionViewDelega
             imageView.frame.size = CGSizeMake(100, 100)
             
             imageCell.frame.size = imageView.frame.size
-            imageView.layer.borderWidth = 1
-            imageView.layer.borderColor = UIColor.lightGrayColor().CGColor
+            //            imageView.layer.borderWidth = 1
+            //            imageView.layer.borderColor = UIColor.redColor().CGColor
+            imageView.layer.cornerRadius = imageView.frame.size.width/8
+            imageView.clipsToBounds = true
             
+            
+        }else{
+            imageCell.frame.size = CGSizeZero
         }
         // imageCell.backgroundColor = UIColor.redColor()
         
         
-        
-        
+        collectionView.sizeToFit()
         
         if(indexPath.item == 0){
             return messageCell

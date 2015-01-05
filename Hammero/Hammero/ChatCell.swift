@@ -8,35 +8,24 @@
 
 import UIKit
 
-class ChatCell: UICollectionViewCell {
+class ChatCell: UITableViewCell {
     
     
-    @IBOutlet weak var messageText: UITextView!
+    @IBOutlet weak var textMessageView: UITextView!
+    @IBOutlet weak var imageMessageView: UIImageView!
     
-    @IBOutlet weak var messageImage: UIImageView!
+    @IBOutlet weak var avatarImageView: UIImageView!
     
-    @IBOutlet weak var avatarImage: UIImageView!
+    @IBOutlet weak var senderEmailLabel: UILabel!
     
-    @IBOutlet weak var senderEmail: UILabel!
+    @IBOutlet weak var sentTimeLabel: UILabel!
     
-    @IBOutlet weak var sentTime: UILabel!
+    @IBOutlet weak var senderPositionLabel: UILabel!
     
-    @IBOutlet weak var senderPosition: UILabel!
-    
-  
- 
 
-    override init(frame: CGRect) {
-        super.init(frame: CGRectMake(0, 0, 200, 110))
-        
-        
+    func setCell(messageText: String){
+        println(messageText)
+        self.textMessageView?.text = messageText
     }
-
-    
-    
-    required init(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-    }
-   
     
 }

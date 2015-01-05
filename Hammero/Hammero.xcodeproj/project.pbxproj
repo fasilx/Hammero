@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1523BF271A540776004166BC /* ChatLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1523BF261A540776004166BC /* ChatLayout.swift */; };
 		1523BF2B1A56C9DD004166BC /* ChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1523BF2A1A56C9DD004166BC /* ChatCell.swift */; };
+		152C2AB11A59268E00160F24 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 152C2AB01A59268E00160F24 /* ChatViewController.swift */; };
 		156955461A379155003B3144 /* JSQMessagesAssets.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 156954DB1A379154003B3144 /* JSQMessagesAssets.bundle */; };
 		156955471A379155003B3144 /* JSQMessages.strings in Resources */ = {isa = PBXBuildFile; fileRef = 156954DD1A379154003B3144 /* JSQMessages.strings */; };
 		156955491A379155003B3144 /* NSString+JSQMessages.m in Sources */ = {isa = PBXBuildFile; fileRef = 156954F11A379154003B3144 /* NSString+JSQMessages.m */; };
@@ -53,11 +53,9 @@
 		156955701A379155003B3144 /* JSQMessagesTypingIndicatorFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 156955451A379155003B3144 /* JSQMessagesTypingIndicatorFooterView.xib */; };
 		156955721A37958F003B3144 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 156955711A37958F003B3144 /* AudioToolbox.framework */; };
 		156A93C91A3FF00800366B96 /* MyClubsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156A93C81A3FF00800366B96 /* MyClubsCell.swift */; };
-		15707A9B1A53B6C30039A8E7 /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15707A9A1A53B6C30039A8E7 /* Chat.swift */; };
 		157D41791A4338F70082C29E /* edit-32.png in Resources */ = {isa = PBXBuildFile; fileRef = 157D41781A4338F70082C29E /* edit-32.png */; };
 		157D417B1A4369920082C29E /* MyClubsSingleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157D417A1A4369920082C29E /* MyClubsSingleton.swift */; };
 		15A8DCDD1A34245600634C66 /* icon-40@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 15A8DCDC1A34245600634C66 /* icon-40@2x.png */; };
-		15A8DCDF1A3526EF00634C66 /* GroupChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A8DCDE1A3526EE00634C66 /* GroupChat.swift */; };
 		15A8DCE71A3639B600634C66 /* Auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A8DCE61A3639B600634C66 /* Auth.swift */; };
 		15A8DCEB1A36FD0600634C66 /* group-25.png in Resources */ = {isa = PBXBuildFile; fileRef = 15A8DCEA1A36FD0600634C66 /* group-25.png */; };
 		15A8DCEE1A370F1200634C66 /* conference-25.png in Resources */ = {isa = PBXBuildFile; fileRef = 15A8DCED1A370F1200634C66 /* conference-25.png */; };
@@ -75,6 +73,7 @@
 		15AE12391A31758300C30B11 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15AE12381A31758300C30B11 /* CFNetwork.framework */; };
 		15AE123B1A3175A600C30B11 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15AE123A1A3175A600C30B11 /* Security.framework */; };
 		15AE123D1A3175F200C30B11 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15AE123C1A3175F200C30B11 /* SystemConfiguration.framework */; };
+		15CE65791A5B46A700D83EFB /* avatar-default.png in Resources */ = {isa = PBXBuildFile; fileRef = 15CE65781A5B46A700D83EFB /* avatar-default.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,8 +87,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1523BF261A540776004166BC /* ChatLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatLayout.swift; sourceTree = "<group>"; };
 		1523BF2A1A56C9DD004166BC /* ChatCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatCell.swift; sourceTree = "<group>"; };
+		152C2AB01A59268E00160F24 /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		156954DB1A379154003B3144 /* JSQMessagesAssets.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = JSQMessagesAssets.bundle; sourceTree = "<group>"; };
 		156954DE1A379154003B3144 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/JSQMessages.strings; sourceTree = "<group>"; };
 		156954DF1A379154003B3144 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/JSQMessages.strings; sourceTree = "<group>"; };
@@ -189,11 +188,9 @@
 		156955451A379155003B3144 /* JSQMessagesTypingIndicatorFooterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JSQMessagesTypingIndicatorFooterView.xib; sourceTree = "<group>"; };
 		156955711A37958F003B3144 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		156A93C81A3FF00800366B96 /* MyClubsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyClubsCell.swift; sourceTree = "<group>"; };
-		15707A9A1A53B6C30039A8E7 /* Chat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
 		157D41781A4338F70082C29E /* edit-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "edit-32.png"; path = "../../iOS7_icons_free/PNG/32/Editing/edit-32.png"; sourceTree = "<group>"; };
 		157D417A1A4369920082C29E /* MyClubsSingleton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyClubsSingleton.swift; sourceTree = "<group>"; };
 		15A8DCDC1A34245600634C66 /* icon-40@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-40@2x.png"; sourceTree = "<group>"; };
-		15A8DCDE1A3526EE00634C66 /* GroupChat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupChat.swift; sourceTree = "<group>"; };
 		15A8DCE61A3639B600634C66 /* Auth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Auth.swift; path = ../Auth.swift; sourceTree = "<group>"; };
 		15A8DCEA1A36FD0600634C66 /* group-25.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "group-25.png"; path = "Hammero/group-25.png"; sourceTree = "<group>"; };
 		15A8DCED1A370F1200634C66 /* conference-25.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "conference-25.png"; sourceTree = "<group>"; };
@@ -216,6 +213,7 @@
 		15AE123A1A3175A600C30B11 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		15AE123C1A3175F200C30B11 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		15AE123E1A31775100C30B11 /* Hammero-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Hammero-Bridging-Header.h"; sourceTree = "<group>"; };
+		15CE65781A5B46A700D83EFB /* avatar-default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "avatar-default.png"; path = "../../../../../Desktop/avatar-default.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -400,6 +398,7 @@
 		156A93CA1A3FF01100366B96 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				1523BF2A1A56C9DD004166BC /* ChatCell.swift */,
 				156A93C81A3FF00800366B96 /* MyClubsCell.swift */,
 			);
 			name = Cells;
@@ -408,14 +407,10 @@
 		156A93CB1A3FF02300366B96 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				1523BF2A1A56C9DD004166BC /* ChatCell.swift */,
-				1523BF261A540776004166BC /* ChatLayout.swift */,
-				15707A9A1A53B6C30039A8E7 /* Chat.swift */,
 				15A8DCE61A3639B600634C66 /* Auth.swift */,
 				15AE12081A31568E00C30B11 /* EditMyClubs.swift */,
 				15AE12061A31568E00C30B11 /* MyClubs.swift */,
-				15A8DCDE1A3526EE00634C66 /* GroupChat.swift */,
-				156A93CA1A3FF01100366B96 /* Cells */,
+				152C2AB01A59268E00160F24 /* ChatViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -424,6 +419,7 @@
 			isa = PBXGroup;
 			children = (
 				15A8DCDC1A34245600634C66 /* icon-40@2x.png */,
+				15CE65781A5B46A700D83EFB /* avatar-default.png */,
 			);
 			name = images;
 			sourceTree = "<group>";
@@ -470,6 +466,7 @@
 		15AE12011A31568E00C30B11 /* Hammero */ = {
 			isa = PBXGroup;
 			children = (
+				156A93CA1A3FF01100366B96 /* Cells */,
 				157D417C1A436AEE0082C29E /* Singletons */,
 				156A93CC1A3FF0A000366B96 /* images */,
 				156A93CB1A3FF02300366B96 /* Controllers */,
@@ -625,6 +622,7 @@
 				157D41791A4338F70082C29E /* edit-32.png in Resources */,
 				156955701A379155003B3144 /* JSQMessagesTypingIndicatorFooterView.xib in Resources */,
 				15A8DCDD1A34245600634C66 /* icon-40@2x.png in Resources */,
+				15CE65791A5B46A700D83EFB /* avatar-default.png in Resources */,
 				15AE12111A31568E00C30B11 /* LaunchScreen.xib in Resources */,
 				15A8DCEB1A36FD0600634C66 /* group-25.png in Resources */,
 				156955471A379155003B3144 /* JSQMessages.strings in Resources */,
@@ -649,7 +647,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				15A8DCDF1A3526EF00634C66 /* GroupChat.swift in Sources */,
 				156955591A379155003B3144 /* JSQLocationMediaItem.m in Sources */,
 				1569554E1A379155003B3144 /* JSQMessagesKeyboardController.m in Sources */,
 				156955631A379155003B3144 /* JSQMessagesCollectionViewCellIncoming.m in Sources */,
@@ -687,11 +684,10 @@
 				1569555F1A379155003B3144 /* JSQVideoMediaItem.m in Sources */,
 				1569555E1A379155003B3144 /* JSQPhotoMediaItem.m in Sources */,
 				156A93C91A3FF00800366B96 /* MyClubsCell.swift in Sources */,
-				15707A9B1A53B6C30039A8E7 /* Chat.swift in Sources */,
 				1569554C1A379155003B3144 /* UIImage+JSQMessages.m in Sources */,
-				1523BF271A540776004166BC /* ChatLayout.swift in Sources */,
 				156955521A379155003B3144 /* JSQMessagesBubbleImageFactory.m in Sources */,
 				1569555D1A379155003B3144 /* JSQMessagesBubbleImage.m in Sources */,
+				152C2AB11A59268E00160F24 /* ChatViewController.swift in Sources */,
 				15AE12051A31568E00C30B11 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

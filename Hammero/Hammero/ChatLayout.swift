@@ -81,9 +81,9 @@ class ChatLayout: UICollectionViewLayout {
         println("I got here in one peace...")
         var x = CGFloat(indexPath.section)
         var y = CGFloat(indexPath.section)
+//       let cell = self.collectionView?.dequeueReusableCellWithReuseIdentifier("MessageView", forIndexPath: indexPath) as UICollectionViewCell
         
-        
-     return CGRectMake(x, y, 60, 60)
+     return CGRectMake(40, 40, 50, 50)
         
     }
     
