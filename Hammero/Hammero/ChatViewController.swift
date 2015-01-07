@@ -31,6 +31,9 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let instance = MyClubsSingleton.sharedInstance
         self.club = instance.getClub()
         self.checkAuth()
+        
+        
+      
    
     }
     
@@ -48,9 +51,11 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated: false)
+        super.viewWillAppear(false)
         
         // scroll to bottom
+      
+        
     }
     
     func  setupFirebase(){
@@ -87,8 +92,8 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 s2 as String > s1 as String
             })
             
-            println(unsortedMessages.count);print("....")
-            println(sortedMessageKeys.count)
+//            println(unsortedMessages.count);print("....")
+//            println(sortedMessageKeys.count)
             
             for keyIndex in 0...sortedMessageKeys.count - 1 {
                 
@@ -96,48 +101,7 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 self.recievedMessages[keyIndex] = message
                 
                 self.table?.reloadData()
-                
-                
-                // let uid = message.valueForKeyPath("sender.auth.uid") as NSString
-                
-                //                self.ref.childByAppendingPath("/users/" + uid).observeEventType(.Value, withBlock: {
-                //                    dataSnapshot in
-                //                    let auth = dataSnapshot.value as NSDictionary
-                
-                
-                //
-                //                    temp[0] = message.valueForKeyPath("message.message")!
-                //                    temp[1] =  message.valueForKeyPath("message.image")!
-                //                    temp[2] = message.valueForKeyPath("sender.password.email")!
-                //                    temp[3] = message.valueForKey("position")!
-                //                    temp[4] =  message.valueForKey("createdAt")!
-                //                    temp[5] =  auth.valueForKey("avatar")!
-                //                    temp[6] = message.valueForKeyPath("sender.auth.uid")!
-                
-                
-                
-                //                    self.recievedMessages[keyIndex] = message
-                //                    self.table?.reloadData()
-                //
-                //                    //self.table.reloadData()
-                //
-                //                    let x = sortedMessageKeys.count
-                //                    let y = self.recievedMessages.count
-                //
-                //
-                //                    if(x == y){
-                //
-                //                        // collectionview done reloading data, send noticicatin
-                //                        println("ready to send notification")
-                ////                        let doneReloading = NSNotificationCenter.defaultCenter()
-                ////                        doneReloading.postNotificationName("doneReloading", object: self, userInfo: nil)
-                //                        println(self.recievedMessages.count)
-                //                         self.table?.reloadData()
-                //                    }
-                //
-                //
-                //                })
-                // println(self.recievedMessages.count)
+
                 
             }
             
@@ -148,59 +112,7 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
     }
     
-    
-    
-    
-    
-    
-    
-    
-    //    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    //
-    //        let cell = tableView.dequeueReusableCellWithIdentifier("Cell") as UITableViewCell
-    //
-    //        println("func 2 is run")
-    
-    //        let offsetWidth = self.view.bounds.width * 0.98 // 30 percent from minX of View
-    //
-    //
-    //        let gap: CGFloat = 10
-    //
-    //        var messageView = UITextView()
-    //        var displayNameView = UITextView()
-    //
-    //        if( messageText.sizeWithAttributes(nil).width > self.view.bounds.width * 0.80){
-    //
-    //            var x = messageText.sizeWithAttributes(nil).width
-    //            var y = self.view.bounds.width * 0.8
-    //            var z = x/y // this is the number of lines required
-    //            var padding: CGFloat = 12
-    //            let textBoxHeight = (ceil(z) + 1) * messageText.sizeWithAttributes(nil).height + padding
-    //
-    //            messageView = UITextView(frame: CGRectMake(0    , 0, self.view.bounds.width * 0.80, textBoxHeight))
-    //            messageView.text = messageText
-    //
-    //
-    //        }else{
-    //            messageView = UITextView(frame: CGRectMake(0    , 0, 0, 0))
-    //            messageView.text = messageText
-    //            messageView.sizeToFit()
-    //
-    //
-    //        }
-    //
-    //
-    //
-    //        messageView.layer.cornerRadius = messageView.bounds.height / 8  //20% of width
-    //
-    //        cell.addSubview(messageView)
-    
-    
-    
-    
-    // return cell
-    //}
-    
+
     
     func tableView(tableView:UITableView, numberOfRowsInSection section:Int) -> Int
     {
@@ -210,42 +122,135 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCellWithIdentifier("ChatCell", forIndexPath: indexPath) as ChatCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("ChatCell", forIndexPath: indexPath) as UITableViewCell
         
         let message = self.recievedMessages[indexPath.row] as NSDictionary
         let uid = message.valueForKeyPath("sender.auth.uid") as String
-       // var messageText, messageImageString, senderEmailText, postionText, sentAtText, avatarImageString, senderIDSText : String
+        
+        
+        let messageText = message.valueForKeyPath("message.message") as String
+        let messageImageString =  message.valueForKeyPath("message.image") as? String
+        let senderEmailText = message.valueForKeyPath("sender.password.email") as? String
+        let postionText = message.valueForKey("position") as? String
+        let sentAtText  =  message.valueForKey("createdAt") as? String
+        let senderID = message.valueForKeyPath("sender.auth.uid") as? String
+        
+        
+//        //cell.textMessageView.text = messageText
+//        println(cell.textMessageView.frame.size)
+//        cell.textMessageView.sizeThatFits(CGSizeMake(40, 40))
+//        println(cell.textMessageView.frame.size)
+//        //cell.textMessageView.frame.size = cell.textMessageView.frame.size
+        
+//        cell.senderEmailLabel.text = senderEmailText
+//        cell.sentTimeLabel.text = sentAtText
+//        cell.senderPositionLabel.text = postionText
+//        
+       
+        
+        
+    
+
+        let contentViewX = cell.contentView.frame.origin.x
+        let contentViewY = cell.contentView.frame.origin.y
+        
+        
+        var messageView = UITextView()
+        messageView.frame.origin = CGPointMake(contentViewX, contentViewY)
+        messageView.editable = false
+        
+        var avatarView = UIImageView()
+        
+        
+        var textWidth = messageText.sizeWithAttributes(nil).width
+        var textViewWidthShoudBe = cell.contentView.bounds.width * 0.8
+        var numberOfLines = textWidth/textViewWidthShoudBe // this is the number of lines required
+        var textHeight = messageText.sizeWithAttributes(nil).height
+        var padding: CGFloat = 10
+        let textBoxHeight = (ceil(numberOfLines) + 1) * textHeight + padding
+        
+        if( textWidth > textViewWidthShoudBe){
+          
+            messageView.frame.size  = CGSizeMake(textViewWidthShoudBe, textBoxHeight)
+            messageView.text = messageText
+            messageView.layer.cornerRadius = messageView.frame.height/8
+            //messageView.backgroundColor = UIColor.greenColor()
+            
+    
+            
+        }else{
+           // messageView = UITextView(frame: CGRectMake(contentViewX, contentViewY, textWidth, textHeight))
+            messageView.text = messageText
+            messageView.sizeToFit()
+            messageView.layer.cornerRadius = messageView.frame.height/8
+            //messageView.backgroundColor = UIColor.blueColor()
+            
+ 
+        }
         
         self.ref.childByAppendingPath("/users/" + uid).observeEventType(.Value, withBlock: {
             dataSnapshot in
+            
             let auth = dataSnapshot.value as NSDictionary
-            
-           
-            
-            let messageText = message.valueForKeyPath("message.message") as? String
-            let messageImageString =  message.valueForKeyPath("message.image") as? String
-            let senderEmailText = message.valueForKeyPath("sender.password.email") as? String
-            let postionText = message.valueForKey("position") as? String
-            let sentAtText  =  message.valueForKey("createdAt") as? String
             let avatarImageString  =  auth.valueForKey("avatar") as? String
-            let senderIDSText = message.valueForKeyPath("sender.auth.uid") as? String
             
-     
+            let avatarWidth: CGFloat = 30.0; let avatarHeight : CGFloat = 30.0; let flowGapMesageToAvatar: CGFloat = 5.0
             
-            cell.textMessageView.text = messageText
-            cell.imageMessageView.image = self.changeImageStringToImage(messageImageString!, withType: "message")
-            cell.senderEmailLabel.text = senderEmailText
-            cell.sentTimeLabel.text = sentAtText
-            cell.avatarImageView.image = self.changeImageStringToImage(avatarImageString!,withType: "avatar")
-            cell.senderPositionLabel.text = postionText
+            let avatarViewY = messageView.frame.height - avatarHeight
+                avatarView = UIImageView(frame: CGRectMake(contentViewX, avatarViewY, avatarWidth, avatarHeight))
+                avatarView.layer.cornerRadius = avatarWidth/2
+                avatarView.transform.tx = messageView.frame.width + flowGapMesageToAvatar
+//                avatarView.transform.ty = messageView.frame.height
+                avatarView.layer.borderWidth = 0.5
+                avatarView.layer.borderColor = UIColor.lightGrayColor().CGColor
             
-           
-
+//            if(messageImageString != "" && messageImageString != " "){
+//                cell.imageMessageView.image = self.changeImageStringToImage(messageImageString!, withType: "message")
+//                
+//            }else{
+//                cell.imageMessageView.frame = CGRectZero
+//            }
+            
+            if(avatarImageString != "" && avatarImageString != " ")
+            {
+                avatarView.image = self.changeImageStringToImage(avatarImageString!,withType: "avatar")
+                
+            }else{
+                avatarView.image = UIImage(named: "avatar-default")
+            }
+            
+            cell.contentView.addSubview(avatarView)
+            
+            
             
         })
         
+       
+        cell.addSubview(messageView)
         
         
+        
+        
+        if(senderID == self.user?.uid){
+            
+            let cellTransform = CGAffineTransformMake(-1, 0, 0, 1, 0, 0)
+            cell.transform = cellTransform
+            
+            let subviewsTransform = CGAffineTransformMake(-1, 0, 0, 1, 0, 0)
+            messageView.transform = subviewsTransform
+            avatarView.transform = subviewsTransform
+//            cell.senderEmailLabel.transform = subviewsTransform
+//            cell.sentTimeLabel.transform = subviewsTransform
+//            cell.senderPositionLabel.transform = subviewsTransform
+//        
+            messageView.backgroundColor = UIColor.greenColor()
+        
+            
+            
+        }else{
+            
+            messageView.backgroundColor = UIColor.lightGrayColor()
+        }
         
         return cell
         
@@ -253,21 +258,10 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     
     func changeImageStringToImage(imageString: String, withType: String) -> UIImage {
-        if(imageString != ""){
+       
             let imageData = NSData(base64EncodedString: imageString, options: .allZeros)
             return UIImage(data: imageData!)!
-        }else {
-            if(withType == "message"){
-                return UIImage(named: "icon-40")!
-
-            }else{
-              
-                return UIImage(named: "avatar-default")!
-            }
-            
-        }
-        
-    
+   
     }
     
     /*
