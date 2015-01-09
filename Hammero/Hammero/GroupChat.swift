@@ -19,13 +19,13 @@ class GroupChat: UIViewController, UIScrollViewDelegate
     
     var scrollerHeight: CGFloat = 0.0
     
-   
-
+    
+    
     @IBOutlet var scroller: UIScrollView!
     
     var recievedMessages = NSMutableArray()
     
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -33,14 +33,14 @@ class GroupChat: UIViewController, UIScrollViewDelegate
         
         let instance = MyClubsSingleton.sharedInstance
         self.club = instance.getClub()
-       
-       // println(ref)
-    
+        
+        // println(ref)
+        
         self.checkAuth()
-  
-
+        
+        
     }
- 
+    
     func checkAuth(){
         ref.observeAuthEventWithBlock({ authData in
             if authData != nil {
@@ -51,21 +51,21 @@ class GroupChat: UIViewController, UIScrollViewDelegate
             } else {
                 self.performSegueWithIdentifier("checkAuth", sender: self)
             }
-            })
+        })
     }
     
-  
+    
     
     func  setupFirebase(){
         
         let clubID = self.club.valueForKey("clubID") as String
         var messageLimitedTo: UInt = 20
-       
+        
         ref.childByAppendingPath("/messages/" + clubID + "/all").queryLimitedToLast(messageLimitedTo).observeEventType(.Value, withBlock: {
             dataSnapshot in
-        
-         var offSetHeight: CGFloat = 10
-         
+            
+            
+            
             if(dataSnapshot.value as NSObject == NSNull()){
                 println("it is null")
                 
@@ -77,137 +77,221 @@ class GroupChat: UIViewController, UIScrollViewDelegate
                 notice.layer.borderWidth = 0.5
                 self.view.addSubview(notice)
                 return;
-
+                
             }
-           
-           var messagesDictionary = dataSnapshot.value as NSMutableDictionary
             
-           // Dictionary does not have a guarenteed order. Arrays do. So chane to arrary and sort here
-           let unsortedMessages = messagesDictionary.allKeys
-           let sortedMessageKeys =  unsortedMessages.sorted({ (s1, s2) -> Bool in
-            s2 as String > s1 as String
-           })
-
+            var messagesDictionary = dataSnapshot.value as NSMutableDictionary
+            
+            // Dictionary does not have a guarenteed order. Arrays do. So chane to arrary and sort here
+            let unsortedMessages = messagesDictionary.allKeys
+            let sortedMessageKeys =  unsortedMessages.sorted({ (s1, s2) -> Bool in
+                s2 as String > s1 as String
+            })
+            
+            
+            /////////////////////////////BEGIN FOR LOOP/////////////////////////////////////////// one loop is one cell, just like in UITableViewCells
+            
+            var cellHeight: CGFloat = 30
+            
             
             for aKey in sortedMessageKeys {
                 
-                var auth = NSDictionary()
-                var displayName = NSString()
-              
                 let message = messagesDictionary.valueForKey(aKey as String) as NSMutableDictionary
-                
                 let uid = message.valueForKeyPath("sender.auth.uid") as NSString
+                let messageText = message.valueForKeyPath("message.message") as String
+                let messageImageString =  message.valueForKeyPath("message.image") as? String
+                let senderEmailText = message.valueForKeyPath("sender.password.email") as? String
+                let senderPositionArray: NSArray = message.valueForKey("position") as NSArray
+                let sentAt: AnyObject  =  message.valueForKey("createdAt")!
+                let senderID = message.valueForKeyPath("sender.auth.uid") as String
+                var avatarImageString = ""
+               
                 
                 // firebase call to users
                 self.ref.childByAppendingPath("/users/" + uid).observeEventType(.Value, withBlock: {
                     dataSnapshot in
-                    auth = dataSnapshot.value as NSDictionary
-                    displayName = auth.valueForKey("displayName") as NSString
-                    println(displayName)
-                    println("................")
+                    let auth = dataSnapshot.value as NSDictionary
+                    avatarImageString =  auth.valueForKey("avatar") as String
+                    
                 })
                 
                 
-                let messageText = message.valueForKeyPath("message.message") as NSString
-                let imageString = message.valueForKeyPath("message.image") as? String
-              
-                let offsetWidth = self.view.bounds.width * 0.98 // 30 percent from minX of View
                 
-                let imageHeight: CGFloat = 100
-                let imageWidth: CGFloat = -100
+                let sideInset: CGFloat = self.view.bounds.width * 0.02
+                let bottomInset: CGFloat = 10
+                let padding: CGFloat = 12
                 
-                let gap: CGFloat = 10
- 
+                var messageViewY: CGFloat = 0
+                var imageMessageHeight: CGFloat = 0
+                var imageMessageWidth: CGFloat = 0
+                
+                // create views
                 var messageView = UITextView()
-                var displayNameView = UITextView()
+                var imageMessageView = UIImageView()
+                var avatarImageView = UIImageView()
+                var senderEmailLabel = UILabel()
+                var sentAtLabel = UILabel()
+                var senderPositionLabel = UILabel()
                 
-                if( messageText.sizeWithAttributes(nil).width > self.view.bounds.width * 0.80){
-                    
-                    var x = messageText.sizeWithAttributes(nil).width
-                    var y = self.view.bounds.width * 0.8
-                    var z = x/y // this is the number of lines required
-                    var padding: CGFloat = 12
-                    let textBoxHeight = (ceil(z) + 1) * messageText.sizeWithAttributes(nil).height + padding
+                var messageTextStringLength = messageText.sizeWithAttributes(nil).width
+                var maxMessageViewWidth = self.view.bounds.width * 0.8
+                var numberOfLines = messageTextStringLength/maxMessageViewWidth // this is the number of lines required
                 
-                    messageView = UITextView(frame: CGRectMake(offsetWidth, offSetHeight, self.view.bounds.width * 0.80, textBoxHeight))
+                
+                let messageViewHeight: CGFloat = (ceil(numberOfLines) + 1) * messageText.sizeWithAttributes(nil).height + padding
+                
+                // messageView. all View positions based on messageViewView
+                if( messageTextStringLength > maxMessageViewWidth){
+                    messageView = UITextView(frame: CGRectMake(sideInset, cellHeight, maxMessageViewWidth, messageViewHeight))
                     messageView.text = messageText
-                    
-                    displayNameView = UITextView(frame: CGRectMake(offsetWidth, offSetHeight + textBoxHeight + 2, self.view.bounds.width * 0.80, textBoxHeight))
-                    displayNameView.text = "my name is not y9ur"
-                    
-                    displayNameView.sizeToFit()
-                    
+                    messageViewY = messageView.bounds.origin.y
                 }else{
-                    messageView = UITextView(frame: CGRectMake(offsetWidth, offSetHeight, 0, 0))
+                    messageView = UITextView(frame: CGRectMake(sideInset, cellHeight, 0, 0))
                     messageView.text = messageText
                     messageView.sizeToFit()
-                    
-                    displayNameView = UITextView(frame: CGRectMake(offsetWidth, (2 * offSetHeight + 2), 0, 0))
-                    displayNameView.text = "My name is you"
-                    displayNameView.sizeToFit()
-                    
-                  
                 }
-                
-                
                 
                 messageView.layer.cornerRadius = messageView.bounds.height / 8  //20% of width
-                
-               
-                if(self.user?.uid == message.valueForKeyPath("sender.auth.uid") as? NSString){
-                    messageView.transform.tx = -messageView.bounds.width
-                    displayNameView.transform.tx = -messageView.bounds.width
-                    messageView.backgroundColor = UIColor.greenColor()
-                     displayNameView.backgroundColor = UIColor.redColor()
-                
-                }else{
-                    messageView.transform.tx = -offsetWidth*0.95
-                    displayNameView.transform.tx = -offsetWidth*0.95
-                    messageView.backgroundColor = UIColor.lightGrayColor()
-                    displayNameView.backgroundColor = UIColor.redColor()
-                }
-
-               
-                
-                
-                if(imageString != ""){
-                    
-                    let imageVeiw = UIImageView(frame: CGRectMake(offsetWidth, offSetHeight, imageWidth, imageHeight))
-                    let imageData = NSData(base64EncodedString: imageString!, options: .allZeros)
-                    
-                    imageVeiw.image = UIImage(data: imageData!)
-                    messageView.transform.ty = imageHeight
-                    displayNameView.transform.ty = imageHeight
-                    self.view.addSubview(imageVeiw)
-
-                    
-                    
-                    offSetHeight = offSetHeight + imageHeight +  messageView.bounds.height + gap
-                    
-                }else{
-                    offSetHeight = offSetHeight + messageView.bounds.height + gap
-                }
-               
                 self.view.addSubview(messageView)
-                self.view.addSubview(displayNameView)
-
                 
-                self.scrollerHeight = offSetHeight
+    
+                //avatarImageview
                 
-              
+                let avatarImageWidth: CGFloat = 30
+                let avatarImageHeight: CGFloat = 30
+                let gabMessageViewToAvatar: CGFloat = 5
+                    avatarImageView = UIImageView(frame: CGRectMake(sideInset, cellHeight, avatarImageWidth, avatarImageHeight))
+                
+                if(avatarImageString != "" && avatarImageString != " "){
+    
+                    let avatarData = NSData(base64EncodedString: avatarImageString, options: .allZeros)
+                    avatarImageView.image = UIImage(data: avatarData!)
             
+                }else{
+                    avatarImageView.image = UIImage(named: "avatar-default")
+                }
+                
+                
+                avatarImageView.layer.cornerRadius = avatarImageWidth/2
+                avatarImageView.layer.borderWidth = 0.5
+                avatarImageView.layer.backgroundColor = UIColor.lightGrayColor().CGColor
+                
+                self.view.addSubview(avatarImageView)
+                
+                avatarImageView.transform.tx = messageView.frame.width + gabMessageViewToAvatar
+                avatarImageView.transform.ty = messageView.frame.height - avatarImageHeight
+                
+                
+                // lables
+                let verticalSpacing : CGFloat = 5
+                let labelPlacing = messageView.frame.height + verticalSpacing
+                let labelSpacing: CGFloat = 5
+                
+                senderEmailLabel = UILabel(frame: CGRectMake(sideInset, cellHeight + labelPlacing, 0 , 0))
+                senderEmailLabel.font = UIFont.systemFontOfSize(12)
+                senderEmailLabel.text = senderEmailText
+                senderEmailLabel.layer.borderWidth = 0.3
+                senderEmailLabel.layer.borderColor = UIColor.lightGrayColor().CGColor
+                senderEmailLabel.layer.cornerRadius = senderEmailLabel.bounds.height/8
+                senderEmailLabel.sizeToFit()
+                
+                
+                senderPositionLabel = UILabel(frame: CGRectMake(sideInset, cellHeight +   labelPlacing, 0, 0))
+                senderPositionLabel.font = UIFont.systemFontOfSize(12)
+                senderPositionLabel.text   =  senderPositionArray[0] as? NSString
+                senderPositionLabel.sizeToFit()
+                senderPositionLabel.transform.tx = senderEmailLabel.frame.width + labelSpacing
+                println(sentAt)
+                
+            
+                sentAtLabel = UILabel(frame: CGRectMake(sideInset + self.view.bounds.width/2, cellHeight, 0, 0)) // top of text view
+                sentAtLabel.font = UIFont.systemFontOfSize(9)
+                sentAtLabel.text = "sent AT"
+                sentAtLabel.sizeToFit()
+                sentAtLabel.transform.ty = -sentAtLabel.bounds.height
+                
+  
+                
+//                sentAtLabel.backgroundColor = UIColor.redColor()
+//                senderPositionLabel.backgroundColor = UIColor.redColor()
+//                senderEmailLabel.backgroundColor = UIColor.redColor()
+//                
+                self.view.addSubview(senderEmailLabel)
+                self.view.addSubview(sentAtLabel)
+                self.view.addSubview(senderPositionLabel)
+                
+                
+//                println(senderEmailLabel)
+//                println(sentAtText)
+//                println(senderPositionText)
+        
+                
+                // messageStringView.
+                if(messageImageString != "" && messageImageString != " "){
+                    
+                    imageMessageHeight = 100
+                    imageMessageWidth = 100
+                    
+                    imageMessageView = UIImageView(frame: CGRectMake(sideInset, cellHeight, imageMessageWidth, imageMessageHeight))
+                    let imageData = NSData(base64EncodedString: messageImageString!, options: .allZeros)
+                    
+                    imageMessageView.image = UIImage(data: imageData!)
+                    imageMessageView.layer.cornerRadius = imageMessageWidth/8
+                    imageMessageView.clipsToBounds = true
+                    
+                    //move messageView down for imageMessageView, avatarView
+                    messageView.transform.ty = imageMessageHeight
+                    avatarImageView.transform.ty = imageMessageHeight
+            
+                    
+                    self.view.addSubview(imageMessageView)
+                    
+                }
+                
+                
+                // Tarnsformation based on sender
+                if(self.user?.uid == message.valueForKeyPath("sender.auth.uid") as? NSString){
+                    
+                    messageView.transform.tx = self.view.bounds.width - messageView.bounds.width - 2 * sideInset
+                    imageMessageView.transform.tx = self.view.bounds.width - imageMessageView.bounds.width - 2 * sideInset
+                    avatarImageView.transform.tx = self.view.bounds.width - messageView.bounds.width - 2 * avatarImageView.bounds.width + 2 * sideInset
+                    messageView.backgroundColor = UIColor.greenColor()
+                    
+                    
+                }else{
+                    
+                    messageView.backgroundColor = UIColor.lightGrayColor()
+                    
+                }
+                
+                //add a dividing line
+                let line = UILabel(frame: CGRectMake(self.view.bounds.width * 0.25, cellHeight - bottomInset, self.view.bounds.width/2, 1))
+                line.backgroundColor = UIColor.lightGrayColor()
+                line.layer.cornerRadius = line.bounds.height/2
+                self.view.addSubview(line)
+              
+                // add cell height
+                cellHeight = cellHeight + imageMessageHeight +  senderEmailLabel.bounds.height + verticalSpacing +  messageView.bounds.height + bottomInset * 2
+                
+          
+                
+                
+                
             }
             
-             self.scroller.contentSize = CGSizeMake(self.view.bounds.width, self.scrollerHeight)
-             self.scroller.scrollsToTop = true
+            self.scrollerHeight = cellHeight
+            ////////////////////////////END FOR LOOP//////////////////////////////////////////
+            
+            self.scroller.contentSize = CGSizeMake(self.view.bounds.width, self.scrollerHeight)
+            self.scroller.scrollsToTop = true
             //scroll bottom
             self.scroller.setContentOffset(CGPointMake(0, self.scroller.contentSize.height - self.scroller.bounds.size.height), animated: false)
             
-            })
+        })
         
         
         
-        }
-
-
+    }
+    
+    
 }

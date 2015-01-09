@@ -52,7 +52,7 @@
                         <viewControllerLayoutGuide type="bottom" id="5W0-P6-Lqo"/>
                     </layoutGuides>
                     <scrollView key="view" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" id="pb1-KQ-1JV">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="785" height="687"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </scrollView>
@@ -64,24 +64,25 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XXu-EF-2Hb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3984" y="-3524"/>
+            <point key="canvasLocation" x="-900.5" y="-2184"/>
         </scene>
         <!--Chat View Controller-->
         <scene sceneID="fLP-Wq-EKv">
             <objects>
                 <viewController id="cva-en-xbd" customClass="ChatViewController" customModule="Hammero" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="185" sectionHeaderHeight="22" sectionFooterHeight="22" id="ZVA-F7-nlb">
-                        <rect key="frame" x="0.0" y="0.0" width="785" height="800"/>
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="ZVA-F7-nlb">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="ChatCell" rowHeight="185" id="PrH-jz-QyA" customClass="ChatCell" customModule="Hammero" customModuleProvider="target">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationLevel="8" indentationWidth="8" shouldIndentWhileEditing="NO" reuseIdentifier="ChatCell" rowHeight="185" id="PrH-jz-QyA" customClass="ChatCell" customModule="Hammero" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="785" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="PrH-jz-QyA" id="Uon-V2-yCi">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <color key="tintColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                                 </tableViewCellContentView>
+                                <inset key="separatorInset" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -95,7 +96,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Lgl-nA-ZsN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-482.5" y="-2200"/>
+            <point key="canvasLocation" x="-603" y="-3676"/>
         </scene>
         <!--Chat-->
         <scene sceneID="pnM-nt-bxY">
@@ -234,7 +235,7 @@
                                     <outlet property="clubFounder" destination="92l-I7-wNu" id="kA3-rj-VXb"/>
                                     <outlet property="clubName" destination="deG-K1-h4j" id="YE5-F3-OnX"/>
                                     <segue destination="28e-V8-bzs" kind="show" identifier="" trigger="accessoryAction" id="0Le-1G-X5M"/>
-                                    <segue destination="cva-en-xbd" kind="show" id="ttu-Eb-R8N"/>
+                                    <segue destination="K75-hP-9Ep" kind="show" id="8RZ-M0-kbI"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

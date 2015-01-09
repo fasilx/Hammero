@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		1523BF2B1A56C9DD004166BC /* ChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1523BF2A1A56C9DD004166BC /* ChatCell.swift */; };
-		152C2AB11A59268E00160F24 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 152C2AB01A59268E00160F24 /* ChatViewController.swift */; };
 		156955461A379155003B3144 /* JSQMessagesAssets.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 156954DB1A379154003B3144 /* JSQMessagesAssets.bundle */; };
 		156955471A379155003B3144 /* JSQMessages.strings in Resources */ = {isa = PBXBuildFile; fileRef = 156954DD1A379154003B3144 /* JSQMessages.strings */; };
 		156955491A379155003B3144 /* NSString+JSQMessages.m in Sources */ = {isa = PBXBuildFile; fileRef = 156954F11A379154003B3144 /* NSString+JSQMessages.m */; };
@@ -74,6 +73,7 @@
 		15AE123B1A3175A600C30B11 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15AE123A1A3175A600C30B11 /* Security.framework */; };
 		15AE123D1A3175F200C30B11 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15AE123C1A3175F200C30B11 /* SystemConfiguration.framework */; };
 		15CE65791A5B46A700D83EFB /* avatar-default.png in Resources */ = {isa = PBXBuildFile; fileRef = 15CE65781A5B46A700D83EFB /* avatar-default.png */; };
+		15DC0CFA1A5F181C003B64BE /* GroupChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DC0CF91A5F181C003B64BE /* GroupChat.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,7 +88,6 @@
 
 /* Begin PBXFileReference section */
 		1523BF2A1A56C9DD004166BC /* ChatCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatCell.swift; sourceTree = "<group>"; };
-		152C2AB01A59268E00160F24 /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		156954DB1A379154003B3144 /* JSQMessagesAssets.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = JSQMessagesAssets.bundle; sourceTree = "<group>"; };
 		156954DE1A379154003B3144 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/JSQMessages.strings; sourceTree = "<group>"; };
 		156954DF1A379154003B3144 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/JSQMessages.strings; sourceTree = "<group>"; };
@@ -214,6 +213,7 @@
 		15AE123C1A3175F200C30B11 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		15AE123E1A31775100C30B11 /* Hammero-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Hammero-Bridging-Header.h"; sourceTree = "<group>"; };
 		15CE65781A5B46A700D83EFB /* avatar-default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "avatar-default.png"; path = "../../../../../Desktop/avatar-default.png"; sourceTree = "<group>"; };
+		15DC0CF91A5F181C003B64BE /* GroupChat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupChat.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -409,8 +409,8 @@
 			children = (
 				15A8DCE61A3639B600634C66 /* Auth.swift */,
 				15AE12081A31568E00C30B11 /* EditMyClubs.swift */,
+				15DC0CF91A5F181C003B64BE /* GroupChat.swift */,
 				15AE12061A31568E00C30B11 /* MyClubs.swift */,
-				152C2AB01A59268E00160F24 /* ChatViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -654,6 +654,7 @@
 				1569555C1A379155003B3144 /* JSQMessagesAvatarImage.m in Sources */,
 				156955601A379155003B3144 /* JSQMessagesCellTextView.m in Sources */,
 				1569556D1A379155003B3144 /* JSQMessagesToolbarContentView.m in Sources */,
+				15DC0CFA1A5F181C003B64BE /* GroupChat.swift in Sources */,
 				156955681A379155003B3144 /* JSQMessagesInputToolbar.m in Sources */,
 				15AE12091A31568E00C30B11 /* EditMyClubs.swift in Sources */,
 				156955551A379155003B3144 /* JSQMessagesToolbarButtonFactory.m in Sources */,
@@ -687,7 +688,6 @@
 				1569554C1A379155003B3144 /* UIImage+JSQMessages.m in Sources */,
 				156955521A379155003B3144 /* JSQMessagesBubbleImageFactory.m in Sources */,
 				1569555D1A379155003B3144 /* JSQMessagesBubbleImage.m in Sources */,
-				152C2AB11A59268E00160F24 /* ChatViewController.swift in Sources */,
 				15AE12051A31568E00C30B11 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
