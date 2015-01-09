@@ -129,9 +129,10 @@ class GroupChat: UIViewController, UIScrollViewDelegate
                 var messageView = UITextView()
                 var imageMessageView = UIImageView()
                 var avatarImageView = UIImageView()
-                var senderEmailLabel = UILabel()
+                var senderEmailButton = UIButton()
+                var senderPositionButton = UIButton()
                 var sentAtLabel = UILabel()
-                var senderPositionLabel = UILabel()
+                
                 
                 var messageTextStringLength = messageText.sizeWithAttributes(nil).width
                 var maxMessageViewWidth = self.view.bounds.width * 0.8
@@ -185,28 +186,27 @@ class GroupChat: UIViewController, UIScrollViewDelegate
                 // lables
                 let verticalSpacing : CGFloat = 5
                 let labelPlacing = messageView.frame.height + verticalSpacing
-                let labelSpacing: CGFloat = 5
+                let horizontalLabelSpacing: CGFloat = 10
                 
-                senderEmailLabel = UILabel(frame: CGRectMake(sideInset, cellHeight + labelPlacing, 0 , 0))
-                senderEmailLabel.font = UIFont.systemFontOfSize(12)
-                senderEmailLabel.text = senderEmailText
-                senderEmailLabel.layer.borderWidth = 0.3
-                senderEmailLabel.layer.borderColor = UIColor.lightGrayColor().CGColor
-                senderEmailLabel.layer.cornerRadius = senderEmailLabel.bounds.height/8
-                senderEmailLabel.sizeToFit()
+                senderEmailButton = UIButton.buttonWithType(UIButtonType.System) as UIButton
+                senderEmailButton.frame = CGRectMake(sideInset, cellHeight + labelPlacing, 0 , 0)
+                senderEmailButton.setTitle(senderEmailText, forState: UIControlState.Normal)
+                senderEmailButton.titleLabel?.font = UIFont.systemFontOfSize(11)
+                senderEmailButton.sizeToFit()
                 
-                
-                senderPositionLabel = UILabel(frame: CGRectMake(sideInset, cellHeight +   labelPlacing, 0, 0))
-                senderPositionLabel.font = UIFont.systemFontOfSize(12)
-                senderPositionLabel.text   =  senderPositionArray[0] as? NSString
-                senderPositionLabel.sizeToFit()
-                senderPositionLabel.transform.tx = senderEmailLabel.frame.width + labelSpacing
-                println(sentAt)
+                senderPositionButton = UIButton.buttonWithType(UIButtonType.System) as UIButton
+                senderPositionButton.frame = CGRectMake(sideInset, cellHeight +   labelPlacing, 0, 0)
+                senderPositionButton.setTitle( senderPositionArray[0] as? NSString, forState: UIControlState.Normal)
+                senderPositionButton.titleLabel?.font = UIFont.systemFontOfSize(11)
+                senderPositionButton.sizeToFit()
+                senderPositionButton.transform.tx = senderEmailButton.frame.width + horizontalLabelSpacing
+               
                 
             
-                sentAtLabel = UILabel(frame: CGRectMake(sideInset + self.view.bounds.width/2, cellHeight, 0, 0)) // top of text view
+                sentAtLabel = UILabel(frame: CGRectMake(sideInset, cellHeight, 0, 0)) // top of text view
                 sentAtLabel.font = UIFont.systemFontOfSize(9)
-                sentAtLabel.text = "sent AT"
+                sentAtLabel.alpha = 0.7
+                sentAtLabel.text = "today: 5:40PM"
                 sentAtLabel.sizeToFit()
                 sentAtLabel.transform.ty = -sentAtLabel.bounds.height
                 
@@ -216,9 +216,9 @@ class GroupChat: UIViewController, UIScrollViewDelegate
 //                senderPositionLabel.backgroundColor = UIColor.redColor()
 //                senderEmailLabel.backgroundColor = UIColor.redColor()
 //                
-                self.view.addSubview(senderEmailLabel)
+                self.view.addSubview(senderEmailButton)
                 self.view.addSubview(sentAtLabel)
-                self.view.addSubview(senderPositionLabel)
+                self.view.addSubview(senderPositionButton)
                 
                 
 //                println(senderEmailLabel)
@@ -239,9 +239,11 @@ class GroupChat: UIViewController, UIScrollViewDelegate
                     imageMessageView.layer.cornerRadius = imageMessageWidth/8
                     imageMessageView.clipsToBounds = true
                     
-                    //move messageView down for imageMessageView, avatarView
+                    //move messageView down for imageMessageView, avatarView, and all labels
                     messageView.transform.ty = imageMessageHeight
                     avatarImageView.transform.ty = imageMessageHeight
+                    senderEmailButton.transform.ty = imageMessageHeight
+                    senderPositionButton.transform.ty = imageMessageHeight
             
                     
                     self.view.addSubview(imageMessageView)
@@ -255,7 +257,15 @@ class GroupChat: UIViewController, UIScrollViewDelegate
                     messageView.transform.tx = self.view.bounds.width - messageView.bounds.width - 2 * sideInset
                     imageMessageView.transform.tx = self.view.bounds.width - imageMessageView.bounds.width - 2 * sideInset
                     avatarImageView.transform.tx = self.view.bounds.width - messageView.bounds.width - 2 * avatarImageView.bounds.width + 2 * sideInset
+                    senderEmailButton.transform.tx = self.view.bounds.width - 2 * senderEmailButton.frame.width
+                    senderPositionButton.transform.tx = self.view.bounds.width - senderPositionButton.frame.origin.x + senderPositionButton.frame.width - 2 * sideInset
+                    
+                    // transform with the messageView
+                    sentAtLabel.transform.tx = self.view.bounds.width - messageView.bounds.width - 2 * sideInset - (sentAtLabel.frame.width - messageView.bounds.width)
+                    
+
                     messageView.backgroundColor = UIColor.greenColor()
+                    
                     
                     
                 }else{
@@ -265,13 +275,13 @@ class GroupChat: UIViewController, UIScrollViewDelegate
                 }
                 
                 //add a dividing line
-                let line = UILabel(frame: CGRectMake(self.view.bounds.width * 0.25, cellHeight - bottomInset, self.view.bounds.width/2, 1))
-                line.backgroundColor = UIColor.lightGrayColor()
-                line.layer.cornerRadius = line.bounds.height/2
-                self.view.addSubview(line)
+//                let line = UILabel(frame: CGRectMake(self.view.bounds.width * 0.25, cellHeight - bottomInset, self.view.bounds.width/2, 1))
+//                line.backgroundColor = UIColor.lightGrayColor()
+//                line.layer.cornerRadius = line.bounds.height/2
+//                self.view.addSubview(line)
               
                 // add cell height
-                cellHeight = cellHeight + imageMessageHeight +  senderEmailLabel.bounds.height + verticalSpacing +  messageView.bounds.height + bottomInset * 2
+                cellHeight = cellHeight + imageMessageHeight +  senderEmailButton.bounds.height + verticalSpacing +  messageView.bounds.height + bottomInset * 2
                 
           
                 
