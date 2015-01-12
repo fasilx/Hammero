@@ -8,7 +8,7 @@
 
 import UIKit
 
-class Auth: UIViewController {
+class Auth: UIViewController, UITextFieldDelegate {
 
     var ref = Firebase(url: "https://peopler.firebaseio.com")
     
@@ -52,7 +52,8 @@ class Auth: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.usename.delegate = self
+        self.password.delegate = self
         // Do any additional setup after loading the view.
     }
 
@@ -61,7 +62,13 @@ class Auth: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        
+        usename.resignFirstResponder()
+        password.resignFirstResponder()
+        
+        return true
+    }
     /*
     // MARK: - Navigation
 

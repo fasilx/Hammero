@@ -11,7 +11,7 @@ import UIKit
 import Foundation
 
 
-class GroupChat: UIViewController, UIScrollViewDelegate
+class GroupChat: UIViewController
 {
     var user:FAuthData? = nil
     var club: AnyObject = [:]
@@ -20,26 +20,82 @@ class GroupChat: UIViewController, UIScrollViewDelegate
     var scrollerHeight: CGFloat = 0.0
     
     
+  
     
-    @IBOutlet var scroller: UIScrollView!
+    var scroller = UIScrollView()
+    var messageView =  UIView()
+    var senderView = UIView()
+    var attachmentButton = UIButton()
+    var messageBox = UITextField()
+    var sendButton = UIButton()
     
-    var recievedMessages = NSMutableArray()
+    
+    @IBOutlet weak var messengerToolbar: UIToolbar!
+    
+    
+       var recievedMessages = NSMutableArray()
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
-        
+
         let instance = MyClubsSingleton.sharedInstance
         self.club = instance.getClub()
         
-        // println(ref)
-        
         self.checkAuth()
+
+    }
+    
+    override func loadView() {
+        // loadView should never call super
+        
+        self.view = UIView(frame: UIScreen.mainScreen().bounds)
+        self.scroller = UIScrollView(frame: self.view.frame)
+        self.scroller.addSubview(messageView)
+        
+        self.view.addSubview(self.scroller)
+        
+        self.scroller.backgroundColor = UIColor.whiteColor()
+        
+        
+        self.setupSenderView()
+        
         
         
     }
+    
+    
+    func  setupSenderView(){
+        
+        let sendeViewHeight: CGFloat = 60
+        senderView = UIView(frame: CGRectMake(0, self.view.bounds.height - sendeViewHeight, self.view.bounds.width, sendeViewHeight))
+        senderView.backgroundColor = UIColor.lightGrayColor()
+        
+        //postisions in senderView
+        let inset: CGFloat = 4.0
+        
+        let positionX = CGPointMake(senderView.bounds.origin.x + inset, senderView.bounds.height/3)
+        
+        attachmentButton.setTitle("attach", forState: UIControlState.Normal)
+        attachmentButton.sizeToFit()
+        
+        messageBox.frame.origin = positionX
+        messageBox.transform.tx = attachmentButton.frame.width + inset
+
+        messageBox.placeholder = "Message"
+        sendButton.frame.size = CGSizeMake(senderView.frame.width - (attachmentButton.frame.width + sendButton.frame.width + 2 * inset), 8)
+        messageBox.sizeToFit()
+        sendButton.transform.tx = senderView.frame.width - sendButton.frame.width - inset
+        
+        
+        senderView.addSubview(attachmentButton)
+        senderView.addSubview(messageBox)
+        senderView.addSubview(sendButton)
+     
+        
+        self.view.addSubview(senderView)
+    }
+
     
     func checkAuth(){
         ref.observeAuthEventWithBlock({ authData in
@@ -153,7 +209,7 @@ class GroupChat: UIViewController, UIScrollViewDelegate
                 }
                 
                 messageView.layer.cornerRadius = messageView.bounds.height / 8  //20% of width
-                self.view.addSubview(messageView)
+                self.messageView.addSubview(messageView)
                 
     
                 //avatarImageview
@@ -177,7 +233,7 @@ class GroupChat: UIViewController, UIScrollViewDelegate
                 avatarImageView.layer.borderWidth = 0.5
                 avatarImageView.layer.backgroundColor = UIColor.lightGrayColor().CGColor
                 
-                self.view.addSubview(avatarImageView)
+                self.messageView.addSubview(avatarImageView)
                 
                 avatarImageView.transform.tx = messageView.frame.width + gabMessageViewToAvatar
                 avatarImageView.transform.ty = messageView.frame.height - avatarImageHeight
@@ -216,9 +272,9 @@ class GroupChat: UIViewController, UIScrollViewDelegate
 //                senderPositionLabel.backgroundColor = UIColor.redColor()
 //                senderEmailLabel.backgroundColor = UIColor.redColor()
 //                
-                self.view.addSubview(senderEmailButton)
-                self.view.addSubview(sentAtLabel)
-                self.view.addSubview(senderPositionButton)
+                self.messageView.addSubview(senderEmailButton)
+                self.messageView.addSubview(sentAtLabel)
+                self.messageView.addSubview(senderPositionButton)
                 
                 
 //                println(senderEmailLabel)
@@ -246,7 +302,7 @@ class GroupChat: UIViewController, UIScrollViewDelegate
                     senderPositionButton.transform.ty = imageMessageHeight
             
                     
-                    self.view.addSubview(imageMessageView)
+                    self.messageView.addSubview(imageMessageView)
                     
                 }
                 
@@ -256,13 +312,13 @@ class GroupChat: UIViewController, UIScrollViewDelegate
                     
                     messageView.transform.tx = self.view.bounds.width - messageView.bounds.width - 2 * sideInset
                     imageMessageView.transform.tx = self.view.bounds.width - imageMessageView.bounds.width - 2 * sideInset
-                    avatarImageView.transform.tx = self.view.bounds.width - messageView.bounds.width - 2 * avatarImageView.bounds.width + 2 * sideInset
+                    avatarImageView.transform.tx = self.view.bounds.width - messageView.bounds.width - avatarImageView.bounds.width - gabMessageViewToAvatar - 2 * sideInset
                     senderEmailButton.transform.tx = self.view.bounds.width - 2 * senderEmailButton.frame.width
                     senderPositionButton.transform.tx = self.view.bounds.width - senderPositionButton.frame.origin.x + senderPositionButton.frame.width - 2 * sideInset
                     
                     // transform with the messageView
                     sentAtLabel.transform.tx = self.view.bounds.width - messageView.bounds.width - 2 * sideInset - (sentAtLabel.frame.width - messageView.bounds.width)
-                    
+                   // println(self.view.bounds.width)
 
                     messageView.backgroundColor = UIColor.greenColor()
                     
@@ -282,16 +338,17 @@ class GroupChat: UIViewController, UIScrollViewDelegate
               
                 // add cell height
                 cellHeight = cellHeight + imageMessageHeight +  senderEmailButton.bounds.height + verticalSpacing +  messageView.bounds.height + bottomInset * 2
-                
+                println(cellHeight)
           
                 
                 
                 
             }
-            
-            self.scrollerHeight = cellHeight
             ////////////////////////////END FOR LOOP//////////////////////////////////////////
             
+            
+            self.scrollerHeight = cellHeight + self.senderView.frame.height
+           // self.scroller.contentInset =  UIEdgeInsetsMake(0, 0, self.messengerToolbar.frame.height, 0)
             self.scroller.contentSize = CGSizeMake(self.view.bounds.width, self.scrollerHeight)
             self.scroller.scrollsToTop = true
             //scroll bottom

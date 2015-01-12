@@ -9,8 +9,8 @@
             <objects>
                 <viewController id="Vbe-m4-8Wc" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="zOz-I2-bnZ"/>
-                        <viewControllerLayoutGuide type="bottom" id="6Gx-UY-hIe"/>
+                        <viewControllerLayoutGuide type="top" id="KKr-lf-60Z"/>
+                        <viewControllerLayoutGuide type="bottom" id="zpg-U0-Nz0"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="d0B-bt-Ftk">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
@@ -42,29 +42,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TSx-Rq-dFs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1972" y="-2055"/>
-        </scene>
-        <!--Group Chat-->
-        <scene sceneID="Dft-ci-77D">
-            <objects>
-                <viewController id="K75-hP-9Ep" customClass="GroupChat" customModule="Hammero" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="7af-5r-9KA"/>
-                        <viewControllerLayoutGuide type="bottom" id="5W0-P6-Lqo"/>
-                    </layoutGuides>
-                    <scrollView key="view" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" id="pb1-KQ-1JV">
-                        <rect key="frame" x="0.0" y="0.0" width="785" height="687"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                    </scrollView>
-                    <extendedEdge key="edgesForExtendedLayout"/>
-                    <navigationItem key="navigationItem" id="k4y-5y-NBa"/>
-                    <connections>
-                        <outlet property="scroller" destination="pb1-KQ-1JV" id="aSu-q6-E0l"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="XXu-EF-2Hb" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-900.5" y="-2184"/>
         </scene>
         <!--Chat View Controller-->
         <scene sceneID="fLP-Wq-EKv">
@@ -103,8 +80,8 @@
             <objects>
                 <viewController id="OJk-kL-FWA" customClass="Chat" customModule="Hammero" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="G19-lY-hrw"/>
-                        <viewControllerLayoutGuide type="bottom" id="TC0-o3-gZZ"/>
+                        <viewControllerLayoutGuide type="top" id="U0M-VK-cfw"/>
+                        <viewControllerLayoutGuide type="bottom" id="4ST-fi-Dra"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Nm3-Ih-dgY">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
@@ -235,7 +212,7 @@
                                     <outlet property="clubFounder" destination="92l-I7-wNu" id="kA3-rj-VXb"/>
                                     <outlet property="clubName" destination="deG-K1-h4j" id="YE5-F3-OnX"/>
                                     <segue destination="28e-V8-bzs" kind="show" identifier="" trigger="accessoryAction" id="0Le-1G-X5M"/>
-                                    <segue destination="K75-hP-9Ep" kind="show" id="8RZ-M0-kbI"/>
+                                    <segue destination="W1J-HX-vtI" kind="show" id="R4y-Sb-bQF"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -277,7 +254,7 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="191.5" y="-3084"/>
+            <point key="canvasLocation" x="201.5" y="-3084"/>
         </scene>
         <!--Edit Club-->
         <scene sceneID="5fD-zX-sOw">
@@ -407,15 +384,15 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OL7-XP-cAQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2418.5" y="-3073"/>
+            <point key="canvasLocation" x="2418.5" y="-3072.9999999999995"/>
         </scene>
         <!--Item-->
         <scene sceneID="Moq-Cy-qTj">
             <objects>
                 <viewController id="DcV-iK-mYu" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="44o-Zy-CMh"/>
-                        <viewControllerLayoutGuide type="bottom" id="qIW-c6-3tK"/>
+                        <viewControllerLayoutGuide type="top" id="aVs-HG-Tr9"/>
+                        <viewControllerLayoutGuide type="bottom" id="qGC-if-oJa"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="FCg-gi-gfW">
                         <rect key="frame" x="0.0" y="0.0" width="785" height="800"/>
@@ -433,8 +410,8 @@
             <objects>
                 <viewController id="3mH-5J-P7a" customClass="EditMyClubs" customModule="Hammero" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="5Dn-Qu-c2q"/>
-                        <viewControllerLayoutGuide type="bottom" id="SCi-67-oNs"/>
+                        <viewControllerLayoutGuide type="top" id="d4N-33-6Ze"/>
+                        <viewControllerLayoutGuide type="bottom" id="klC-Xa-FlR"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="FTw-QP-uLw">
                         <rect key="frame" x="0.0" y="0.0" width="785" height="800"/>
@@ -491,15 +468,15 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dMJ-Et-Gf1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1173.5" y="-1640"/>
+            <point key="canvasLocation" x="1173.5" y="-1639.9999999999998"/>
         </scene>
         <!--Auth-->
         <scene sceneID="qRu-m2-Zq4">
             <objects>
                 <viewController hidesBottomBarWhenPushed="YES" id="lGy-bd-pXc" customClass="Auth" customModule="Hammero" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Vta-wd-hzd"/>
-                        <viewControllerLayoutGuide type="bottom" id="bV4-y1-pcs"/>
+                        <viewControllerLayoutGuide type="top" id="lsl-ir-bt9"/>
+                        <viewControllerLayoutGuide type="bottom" id="I2F-XJ-fye"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="sA6-q1-3Cn">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
@@ -571,7 +548,26 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="a04-Tw-4Me" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1251" y="-3089"/>
+            <point key="canvasLocation" x="-1251" y="-3088.9999999999995"/>
+        </scene>
+        <!--Group Chat-->
+        <scene sceneID="ZJf-XK-blm">
+            <objects>
+                <viewController id="W1J-HX-vtI" customClass="GroupChat" customModule="Hammero" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Sqm-Rr-A0x"/>
+                        <viewControllerLayoutGuide type="bottom" id="kjX-rF-8yO"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ZWJ-nT-VgP">
+                        <rect key="frame" x="0.0" y="0.0" width="785" height="800"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="785" height="800"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cks-v6-EL9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-640.5" y="-1832"/>
         </scene>
         <!--join club-->
         <scene sceneID="ksJ-IH-WCv">
@@ -608,7 +604,43 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BVQ-ZR-mUW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1173.5" y="-3084"/>
+            <point key="canvasLocation" x="1173.5" y="-3083.9999999999995"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="fmK-Ad-r7D">
+            <objects>
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="DRf-xD-m8Q" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="x0r-ll-oB2"/>
+                        <viewControllerLayoutGuide type="bottom" id="ZHh-Xu-dh2"/>
+                    </layoutGuides>
+                    <view key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="KbD-5t-c1n">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <toolbarItems/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="AFH-G4-BzD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="eJQ-D8-2Wl">
+            <objects>
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="EMO-i6-gvb" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="NNV-mT-Nfk"/>
+                        <viewControllerLayoutGuide type="bottom" id="npb-LY-asr"/>
+                    </layoutGuides>
+                    <view key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="uN5-ux-GGD">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <toolbarItems/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZaE-NJ-mqe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
         </scene>
     </scenes>
     <resources>
