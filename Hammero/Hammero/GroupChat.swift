@@ -21,14 +21,10 @@ class GroupChat: UIViewController
     
     
   
-    
+    var senderView = UIView()
     var scroller = UIScrollView()
     var messageView =  UIView()
-    var senderView = UIView()
-    var attachmentButton = UIButton()
-    var messageBox = UITextField()
-    var sendButton = UIButton()
-    
+
     
     @IBOutlet weak var messengerToolbar: UIToolbar!
     
@@ -67,6 +63,10 @@ class GroupChat: UIViewController
     
     func  setupSenderView(){
         
+        
+        
+        
+        
         let sendeViewHeight: CGFloat = 60
         senderView = UIView(frame: CGRectMake(0, self.view.bounds.height - sendeViewHeight, self.view.bounds.width, sendeViewHeight))
         senderView.backgroundColor = UIColor.lightGrayColor()
@@ -76,16 +76,25 @@ class GroupChat: UIViewController
         
         let positionX = CGPointMake(senderView.bounds.origin.x + inset, senderView.bounds.height/3)
         
-        attachmentButton.setTitle("attach", forState: UIControlState.Normal)
+        var attachmentButton = UIButton.buttonWithType(UIButtonType.System) as UIButton
+        attachmentButton.center = positionX
+        attachmentButton.setImage(UIImage(named: "camera-25"), forState: UIControlState.Normal)
         attachmentButton.sizeToFit()
         
-        messageBox.frame.origin = positionX
+        
+        var sendButton = UIButton.buttonWithType(UIButtonType.System) as UIButton
+        sendButton.center = positionX
+        sendButton.setTitle("Send", forState: UIControlState.Normal)
+        sendButton.sizeToFit()
+        sendButton.transform.tx = senderView.frame.width - sendButton.frame.width - 2 * inset
+        
+        let inputTextSize = "any text".sizeWithAttributes(nil).height * 2
+        let messageFieldLength = senderView.frame.width - sendButton.frame.width - attachmentButton.frame.width - 4 * inset
+        var messageBox = UITextField(frame: CGRectMake(positionX.x, positionX.y, messageFieldLength, inputTextSize))
+        messageBox.borderStyle = UITextBorderStyle.RoundedRect
+        messageBox.backgroundColor = UIColor.whiteColor()
         messageBox.transform.tx = attachmentButton.frame.width + inset
-
         messageBox.placeholder = "Message"
-        sendButton.frame.size = CGSizeMake(senderView.frame.width - (attachmentButton.frame.width + sendButton.frame.width + 2 * inset), 8)
-        messageBox.sizeToFit()
-        sendButton.transform.tx = senderView.frame.width - sendButton.frame.width - inset
         
         
         senderView.addSubview(attachmentButton)
