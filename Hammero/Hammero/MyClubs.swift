@@ -1,3 +1,5 @@
+
+
 //
 //  MyClubs.swift
 //  Hammero
@@ -124,7 +126,7 @@ class MyClubs: UITableViewController, UISearchBarDelegate, UISearchDisplayDelega
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        println("view did load" )
+       
     
         
         if self.user == nil {
