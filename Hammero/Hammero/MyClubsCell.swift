@@ -36,6 +36,7 @@ class MyClubsCell: UITableViewCell {
         self.clubFounder.text = clubFounder
         self.clubDescription.text = clubDescription
         self.avatar.image = avatar
+
         
         
     }

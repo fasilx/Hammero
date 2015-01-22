@@ -22,6 +22,9 @@ class Auth: UIViewController, UITextFieldDelegate {
     @IBAction func login(sender: AnyObject) {
         
      self.auth()
+        self.resignFirstResponder()
+      
+        //password.resignFirstResponder()
        
     }
  
@@ -38,9 +41,13 @@ class Auth: UIViewController, UITextFieldDelegate {
             if error != nil {
                 // an error occured while attempting login
                  self.error.text = error.localizedDescription
+                 self.error.sizeToFit()
+                 self.error.hidden = false
+                
                 println(error.localizedDescription)
             } else {
                 // user is logged in, check authData for data
+               self.dismissViewControllerAnimated(true, completion: nil)
                 println(authData)
                 
                
@@ -54,6 +61,11 @@ class Auth: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         self.usename.delegate = self
         self.password.delegate = self
+        self.error.layer.borderColor = UIColor.brownColor().CGColor
+        self.error.layer.borderWidth = 0.5
+        self.error.hidden = true
+        
+        self.password.secureTextEntry = true
         // Do any additional setup after loading the view.
     }
 
@@ -63,7 +75,7 @@ class Auth: UIViewController, UITextFieldDelegate {
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
-        
+        self.auth()
         usename.resignFirstResponder()
         password.resignFirstResponder()
         

@@ -273,8 +273,9 @@ class MyClubs: UITableViewController, UISearchBarDelegate, UISearchDisplayDelega
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
            let instance = MyClubsSingleton.sharedInstance
             instance.setClub(clubs[indexPath.row], atRow: indexPath.row)
-        
+            tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
+    
     
     
     // Mark: - Search Bar
