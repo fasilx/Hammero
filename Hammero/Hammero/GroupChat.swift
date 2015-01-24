@@ -71,6 +71,7 @@ class GroupChat: UIViewController, UITextViewDelegate, UIActionSheetDelegate, UI
         self.currentRef = ref.childByAppendingPath("/messages/" + clubID + "/all")
         // currentRef = groupRef
         self.setupFirebase("group")
+        //self.getNewChild()
         
         
         self.messageBox.delegate = self
@@ -79,6 +80,18 @@ class GroupChat: UIViewController, UITextViewDelegate, UIActionSheetDelegate, UI
         
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        self.scroller.frame = self.view.frame
+        setupFirebase("group")
+        //setupSenderView()
+       
+        //println("viewDidLayoutSubviews")
+        //println(self.scroller.frame)
+    }
+    
+
+   
     override func viewDidDisappear(animated: Bool) {
         super.viewDidDisappear(true)
         ref.removeAllObservers()
@@ -204,16 +217,16 @@ class GroupChat: UIViewController, UITextViewDelegate, UIActionSheetDelegate, UI
     
     
     func textViewDidChange(textView: UITextView) {
-        
+        //println("didChante")
         
         var currentHeight = floor(textView.contentSize.height / textView.font.lineHeight)
         var heightWithInsets : CGFloat = textView.contentSize.height
         
         let newLineToggler = Int(currentHeight % 2) //detects changes from odd to even number
         
-        
+        //println(textView.text)
         self.textMessage = textView.text //save text
-        
+         // println(textView.text)
         if(currentHeight <= lineLimit){
             
             
@@ -309,6 +322,11 @@ class GroupChat: UIViewController, UITextViewDelegate, UIActionSheetDelegate, UI
     
     func  setupSenderView(){
         
+        // clean view
+        senderView.frame.size = CGSizeZero
+        attachmentButton.frame.size = CGSizeZero
+        messageBox.frame.size = CGSizeZero
+        sendButton.frame.size = CGSizeZero
         
         senderView.frame.origin = CGPointMake(self.view.frame.origin.x, self.view.frame.size.height - senderViewHeight)
         senderView.frame.size = CGSizeMake(self.view.bounds.width, senderViewHeight)
@@ -318,44 +336,46 @@ class GroupChat: UIViewController, UITextViewDelegate, UIActionSheetDelegate, UI
         
         
         
-        attachmentButton = UIButton.buttonWithType(UIButtonType.DetailDisclosure) as UIButton
-        // attachmentButton.center  = myToolBarPosition
-        attachmentButton.frame.origin.x = myToolBarPosition.x
+        attachmentButton = UIButton.buttonWithType(UIButtonType.System) as UIButton
+        attachmentButton.frame.origin.x = myToolBarPosition.x + inset
         attachmentButton.frame.origin.y = myToolBarPosition.y
-        attachmentButton.transform.ty = inset
-        attachmentButton.transform.tx = inset
-        // attachmentButton.setImage(UIImage(named: "camera-25"), forState: UIControlState.Normal)
-        //attachmentButton.sizeToFit()
+        attachmentButton.setImage(UIImage(named: "camera-25"), forState: UIControlState.Normal)
+        attachmentButton.sizeToFit()
         attachmentButton.addTarget(self, action: "getAttachment:", forControlEvents: UIControlEvents.TouchUpInside)
-        
-        
-        sendButton = UIButton.buttonWithType(UIButtonType.System) as UIButton
-        sendButton.frame.origin.x = myToolBarPosition.x
-        sendButton.frame.origin.y = myToolBarPosition.y
-        sendButton.setTitle("Send", forState: UIControlState.Normal)
-        sendButton.sizeToFit()
-        sendButton.transform.tx = self.view.frame.width - sendButton.frame.width - 2 * inset
-        sendButton.addTarget(self, action: "sendMessage:", forControlEvents: UIControlEvents.TouchUpInside)
         
         messageBox.delegate = self
         
+       
+        let assumedButton = UIButton.buttonWithType(UIButtonType.System) as UIButton
+            assumedButton.setTitle("Send", forState: UIControlState.Normal)
+            assumedButton.sizeToFit()
+        let assumedButtonSize = assumedButton.frame.size.width  // sendButton is not available yet, so I have to create one here to use next
         let inputTextSize = "any text".sizeWithAttributes(nil).height * 2
-        let messageBoxLength = self.view.frame.width - attachmentButton.frame.width - sendButton.frame.width - 5 * inset
+        let messageBoxLength = self.view.frame.width - attachmentButton.frame.width - assumedButtonSize - 4 * inset
         let messageBoxHeight = inputTextSize
         
         
-        messageBox.frame = CGRectMake(myToolBarPosition.x, myToolBarPosition.y, messageBoxLength, messageBoxHeight)
+        messageBox.frame.origin.x = myToolBarPosition.x +  attachmentButton.frame.width + 2 * inset
+        messageBox.frame.origin.y = myToolBarPosition.y
+        messageBox.frame.size = CGSizeMake(messageBoxLength, messageBoxHeight)
         messageBox.backgroundColor = UIColor.whiteColor()
-        //        messageBox.layer.borderColor = UIColor.redColor().CGColor
-        //        messageBox.layer.borderWidth = 1.0
         messageBox.layer.cornerRadius = 5
-        
-        
-        messageBox.transform.tx = attachmentButton.frame.width + 2 * inset
         messageBox.text = "Message"
         messageBox.textColor = UIColor.lightGrayColor() // get ride of these two lines in textfielddidStartEditng delegate
         
         
+        sendButton = UIButton.buttonWithType(UIButtonType.System) as UIButton
+        sendButton.frame.origin.x = myToolBarPosition.x + messageBox.frame.width + attachmentButton.frame.width + 3 * inset
+        sendButton.frame.origin.y = myToolBarPosition.y
+        sendButton.setTitle("Send", forState: UIControlState.Normal)
+        sendButton.sizeToFit()
+        sendButton.addTarget(self, action: "sendMessage:", forControlEvents: UIControlEvents.TouchUpInside)
+        
+        
+        
+        
+//        println(attachmentButton.frame)
+//        println(messageBox.frame)
         
         self.view.addSubview(senderView)
         
@@ -363,11 +383,12 @@ class GroupChat: UIViewController, UITextViewDelegate, UIActionSheetDelegate, UI
         self.view.addSubview(messageBox)
         self.view.addSubview(sendButton)
         
+        //println(self.view.subviews)
         
     }
     
     
-    // Mark :- Personal Chat
+   // Mark: - Personal and Team Chats
    
     func backToGroupChat(sender: UIBarButtonItem){
   
@@ -381,13 +402,13 @@ class GroupChat: UIViewController, UITextViewDelegate, UIActionSheetDelegate, UI
     }
     
     func personalChat(sender: UIButton){
-    
+        
         let msges: NSDictionary = messages.getMessages()
         let keys: NSArray = messages.getIndexArray()
         let messageID: String = keys[sender.tag] as String
         let message: NSDictionary = msges.valueForKeyPath(messageID) as NSDictionary
         
-       let senderID = message.valueForKeyPath("sender.auth.uid")! as String
+        let senderID = message.valueForKeyPath("sender.auth.uid")! as String
         
         var person = senderID
         var currentUser = self.user?.uid
@@ -401,6 +422,65 @@ class GroupChat: UIViewController, UITextViewDelegate, UIActionSheetDelegate, UI
             //console.log(refName)
             // 177,178
         }
+        
+        //let clubID = self.club.valueForKey("clubID") as String
+        var messagePersonRef = ref.childByAppendingPath( "/messages/" + clubID + "/person/" + refName)
+        self.currentRef = messagePersonRef
+        
+        let rightButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Done, target: self, action: "backToGroupChat:")
+        self.navigationItem.rightBarButtonItem = rightButton
+        self.title = sender.titleLabel?.text
+        sender.enabled = false
+        self.setupFirebase("personal")
+        
+        sender.setTitleColor(UIColor.redColor(), forState: UIControlState.Disabled)
+        
+        //message alerts
+        
+        //        let receiver = NSMutableDictionary()
+        //            receiver.setValue(person, forKey: "person") //["person": person, "futureLocation": "fromIphone"]
+        //            receiver.setValue("from iPhone", forKey: "futureLocation")
+        //        let sender    =  NSMutableDictionary()// ["person": currentUser, "futureLocation": false]
+        //            sender.setValue(currentUser, forKey: "person")
+        //            sender.setValue(false, forKey: "futureLocation")
+        //        let update = NSMutableDictionary()
+        //            update.setValue(receiver, forKey: "receiver")
+        //            update.setValue(sender, forKey: "sender")
+        
+        
+        
+        //println(update)
+        //        messagePersonRef.update({
+        //        receiver: ["person": person, "futureLocation": "fromIphone"], "sender": {"person": currentUser, "futureLocation": false}
+        //        })
+        //
+        //clubRef.child("members/" + currentUser.uid + "/messagebox/" + person).remove()//(messageboxItem)
+        
+        
+    }
+    
+    
+    func teamChat(sender: UIButton){
+    
+        let msges: NSDictionary = messages.getMessages()
+        let keys: NSArray = messages.getIndexArray()
+        let messageID: String = keys[sender.tag] as String
+        let message: NSDictionary = msges.valueForKeyPath(messageID) as NSDictionary
+        
+       let senderID = message.valueForKeyPath("sender.auth.uid")! as String
+        
+        var team = senderID
+        var currentUser = self.user?.uid
+        var refName = String()
+        if (team < currentUser){
+            refName = team + "," + currentUser!
+        }else{
+            //console.log("else is called")
+            
+            refName = currentUser! + "," + team;
+            //console.log(refName)
+            // 177,178
+        }
   
         //let clubID = self.club.valueForKey("clubID") as String
         var messagePersonRef = ref.childByAppendingPath( "/messages/" + clubID + "/person/" + refName)
@@ -410,7 +490,7 @@ class GroupChat: UIViewController, UITextViewDelegate, UIActionSheetDelegate, UI
         self.navigationItem.rightBarButtonItem = rightButton 
         self.title = sender.titleLabel?.text
         sender.enabled = false
-        self.setupFirebase("personal")
+        self.setupFirebase("team")
    
         sender.setTitleColor(UIColor.redColor(), forState: UIControlState.Disabled)
         
@@ -439,12 +519,28 @@ class GroupChat: UIViewController, UITextViewDelegate, UIActionSheetDelegate, UI
     }
     
     
+    
+    
+    func getImageMessage(indexSent: Int) ->  NSData{
+        return NSData()
+        
+    }
+    
+    
      // Mark: - Send Messages
     
     func sendMessage(sender: UIButton){
         
+    
+        let attributedText = messageBox.attributedText
+        var imageExists = String()
+        if(attributedText != ""){
+            imageExists = "some text"
+        }else{
+            imageExists = ""
+        }
         
-        let messageData = ["message": messageBox.text, "image": pickerImageString]
+        let messageData = ["message": messageBox.text, "image": imageExists]
         let kFirebaseServerValueTimestamp = [".sv":"timestamp"]
         let position: [String] = ["FOUNDER"]
         
@@ -459,16 +555,38 @@ class GroupChat: UIViewController, UITextViewDelegate, UIActionSheetDelegate, UI
         value.setValue(sender, forKey: "sender")
         
         
-        
+        //println(pickerImageString)
         //let clubID = self.club.valueForKey("clubID") as String
         
        self.currentRef.childByAutoId().setValue(value, withCompletionBlock: {
             error, firbase in
-            //println(error)
-            //println(firbase)
+        
+        
+            let currentPath = self.currentRef.description()
+            let  pathArray = currentPath.pathComponents
+            let id = firbase.description().lastPathComponent
+            //[https:, peopler.firebaseio.com, messages, -Jb3DbMA_U6h6_dLOmus, all] example array
+            // save image in a different location
+            println("sending message")
+            let  path = "/imageMessages/" + self.clubID + "/" + pathArray[4] + "/" + id
+            let newPath = self.ref.childByAppendingPath(path)
+        
+        if(self.messageBox.attributedText != ""){
+            newPath.setValue(self.pickerImageString, withCompletionBlock: {
+                error, imageFirebase in
+                println(error)
+                println(newPath)
+                self.pickerImageString = "" //clean up image
+            })
+            // println(firbase)
+        }
+    
+        
+        
         })
         
-        
+      
+
         // reset some views
         self.messageBox.text = nil
         let inputTextSize = "any text".sizeWithAttributes(nil).height * 2
@@ -480,7 +598,7 @@ class GroupChat: UIViewController, UITextViewDelegate, UIActionSheetDelegate, UI
         
         
         self.pickerImage = UIImage()
-        self.pickerImageString = ""
+      
         
         
     }
@@ -503,12 +621,13 @@ class GroupChat: UIViewController, UITextViewDelegate, UIActionSheetDelegate, UI
     
     
     // MARK: - Setup Firebase to Recieve Messages
-    
+    var x = 0
     func  setupFirebase(type: String){
-        println(type)
-        self.currentRef.queryLimitedToLast(messageLimitedTo).observeEventType(.Value, withBlock: {
+        //println(type)
+       self.currentRef.queryLimitedToLast(13).observeSingleEventOfType(.Value, withBlock: {
             dataSnapshot in
-
+            //println(dataSnapshot.value)
+        //println(self.x++)
             if(dataSnapshot.value as NSObject == NSNull()){
                 
                 
@@ -523,7 +642,7 @@ class GroupChat: UIViewController, UITextViewDelegate, UIActionSheetDelegate, UI
                 
             }
             
-            
+        
             
             var messagesDictionary: NSMutableDictionary = dataSnapshot.value as NSMutableDictionary
                 messagesDictionary.removeObjectForKey("sender")
@@ -538,10 +657,19 @@ class GroupChat: UIViewController, UITextViewDelegate, UIActionSheetDelegate, UI
             })
             
             self.messages.setMessages(messagesDictionary, indexArray: sortedMessageKeys)
-            
+            self.drawViews(ofObjectsIn: messagesDictionary, withKeys: sortedMessageKeys, type: type)
 
+        
+        
+       })
+        
+    }
+
+    
+    func drawViews(ofObjectsIn messagesDictionary: NSDictionary , withKeys sortedMessageKeys: NSArray, type: String){
+        
             
-            if(self.scroller.subviews.count > 0){
+            if(self.scroller.subviews.count > 0){ //clean up view first
                 
                 for aView in self.scroller.subviews{
                     
@@ -685,8 +813,7 @@ class GroupChat: UIViewController, UITextViewDelegate, UIActionSheetDelegate, UI
                 senderEmailButton.sizeToFit()
                 senderEmailButton.addTarget(self, action: "personalChat:", forControlEvents: UIControlEvents.TouchUpInside)
                 senderEmailButton.tag = keyIndex
-               
-        
+              
         
                 
                 senderPositionButton = UIButton.buttonWithType(UIButtonType.System) as UIButton
@@ -695,6 +822,8 @@ class GroupChat: UIViewController, UITextViewDelegate, UIActionSheetDelegate, UI
                 senderPositionButton.titleLabel?.font = UIFont.systemFontOfSize(11)
                 senderPositionButton.sizeToFit()
                 senderPositionButton.transform.tx = senderEmailButton.frame.width + horizontalLabelSpacing
+                senderPositionButton.addTarget(self, action: "teamChat:", forControlEvents: UIControlEvents.TouchUpInside)
+                senderPositionButton.tag = keyIndex
                 
                 
                 
@@ -724,29 +853,56 @@ class GroupChat: UIViewController, UITextViewDelegate, UIActionSheetDelegate, UI
                 
                 
                 // messageStringView.
-                if(messageImageString != "" && messageImageString != " "){
-                    
+             
+                
+                let id  = sortedMessageKeys[keyIndex] as NSString
+                
+                let  path = "/imageMessages/" + self.clubID + "/all/" + id
+                
+                println(sortedMessageKeys[keyIndex])
+                
+                // do some stuff once
+                
+                if(messageImageString != ""){
                     imageMessageHeight = 100
                     imageMessageWidth = 100
                     
                     imageMessageView = UIImageView(frame: CGRectMake(sideInset, cellHeight, imageMessageWidth, imageMessageHeight))
-                    let imageData = NSData(base64EncodedString: messageImageString!, options: .allZeros)
                     
-                    imageMessageView.image = UIImage(data: imageData!)
-                    imageMessageView.layer.cornerRadius = imageMessageWidth/8
-                    imageMessageView.clipsToBounds = true
-                    
-                    //move messageView down for imageMessageView, avatarView, and all labels
-                    textMessageView.transform.ty = imageMessageHeight
-                    avatarImageView.transform.ty = imageMessageHeight
-                    senderEmailButton.transform.ty = imageMessageHeight
-                    senderPositionButton.transform.ty = imageMessageHeight
-                    
-                    
-                    self.scroller.addSubview(imageMessageView)
-                   // self.scroller.insertSubview(imageMessageView, atIndex: keyIndex)
+                    ref.childByAppendingPath(path).observeEventType(.Value, withBlock: { snapshot in
+                        println("firebase called for image")
+                        println(snapshot.value)
+                        if(snapshot.value != nil){
+                            
+//                            let messageImageString = snapshot.value as String
+//                            let imageData = NSData(base64EncodedString: messageImageString, options: NSDataBase64DecodingOptions.allZeros)           // let imageData = NSData(base64EncodedString: messageImageString, options: .allZeros)
+                            
+                            
+                            imageMessageView.layer.cornerRadius = imageMessageWidth/8
+                            imageMessageView.clipsToBounds = true
+                            
+                            //move messageView down for imageMessageView, avatarView, and all labels
+                            textMessageView.transform.ty = imageMessageHeight
+                            avatarImageView.transform.ty = imageMessageHeight
+                            senderEmailButton.transform.ty = imageMessageHeight
+                            senderPositionButton.transform.ty = imageMessageHeight
+                            
+                            
+                            imageMessageView.image = UIImage(named: "icon-40")
+                            self.scroller.addSubview(imageMessageView)
+                            
+                            //self.scroller.insertSubview(imageMessageView, atIndex: keyIndex)
+                            
+
+                            
+                        }
+                        
+                    })
                     
                 }
+              
+
+     
                 
                 
                 // Tarnsformation based on sender
@@ -764,7 +920,10 @@ class GroupChat: UIViewController, UITextViewDelegate, UIActionSheetDelegate, UI
                     if(type == "personal"){
                         textMessageView.backgroundColor = UIColor(red: 0.5, green: 0.5, blue: 1, alpha: 0.5)
                         
-                    }else{
+                    }else if(type == "team"){
+                        textMessageView.backgroundColor = UIColor(red: 0.1, green: 0.5, blue: 0.2, alpha: 0.5)
+                    }
+                    else{
                          textMessageView.backgroundColor = UIColor.greenColor()
                     }
                    
@@ -773,8 +932,11 @@ class GroupChat: UIViewController, UITextViewDelegate, UIActionSheetDelegate, UI
                     
                 }else{
                     if(type == "personal"){
-                    textMessageView.backgroundColor = UIColor(red: 1, green: 0.5, blue: 0.5, alpha: 0.5)
-                    }else{
+                    textMessageView.backgroundColor = UIColor(red: 0.5, green: 1.0, blue: 0.5, alpha: 0.5)
+                    }else if(type == "team"){
+                        textMessageView.backgroundColor = UIColor(red: 0.8, green: 0.4, blue: 0.5, alpha: 0.5)
+                    }
+                    else{
                         textMessageView.backgroundColor = UIColor.lightGrayColor()
  
                     }
@@ -800,13 +962,12 @@ class GroupChat: UIViewController, UITextViewDelegate, UIActionSheetDelegate, UI
             self.scroller.scrollsToTop = true
             //scroll bottom
             self.scroller.setContentOffset(CGPointMake(0, self.scroller.contentSize.height - self.scroller.bounds.size.height), animated: false)
-        })
+//        })
         
         
         
     }
-    
-    
+ 
     
     
 }
